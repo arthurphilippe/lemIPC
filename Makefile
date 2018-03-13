@@ -18,7 +18,8 @@ SRCS		=	src/shm_get.c	\
 			src/key_get.c	\
 			src/sem_suite_get.c	\
 			src/sem_value_alter.c	\
-			src/sem_value_get.c
+			src/sem_value_get.c	\
+			src/sem_delete.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 

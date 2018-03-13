@@ -17,4 +17,5 @@ int main(void)
 	// strcpy(addr, "salut");
 	printf("%s\n", addr);
 	shmdt(addr);
+	shm_delete(key);
 }

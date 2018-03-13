@@ -10,13 +10,15 @@
 void shm_delete_from_scratch(void)
 {
 	key_t key = key_get();
+
+	if (key != -1)
+		shm_delete(key);
+}
+
+void shm_delete(key_t key)
+{
 	int shm_id = shmget(key, BOARD_SIZE, IPC_AFLAGS);
 
 	if (shm_id != -1)
-		shm_delete(shm_id);
-}
-
-void shm_delete(int shm_id)
-{
-	shmctl(shm_id, IPC_RMID, NULL);
+		shmctl(shm_id, IPC_RMID, NULL);
 }
