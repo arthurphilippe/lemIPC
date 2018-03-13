@@ -9,11 +9,16 @@ CC		=	gcc
 
 RM		=	rm -vf
 
-NAME		=	philo
+NAME		=	lemipc
 
 MAIN		=	src/main.c
 
-SRCS		=
+SRCS		=	src/shm_get.c	\
+			src/shm_delete.c	\
+			src/key_get.c	\
+			src/sem_suite_get.c	\
+			src/sem_value_alter.c	\
+			src/sem_value_get.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
@@ -21,9 +26,7 @@ OBJS		=	$(SRCS:.c=.o)
 
 TEST		=	unit_tests.out
 
-SRCS_TEST	=	tests/test-simulation.c	\
-			tests/test_args.c	\
-			tests/test-threads.c
+SRCS_TEST	=	tests/test_sem.c	\
 
 SRCS_TEST	+=	$(OBJS)
 
