@@ -17,5 +17,6 @@ void ipc_delete(void)
 		if (sem != -1)
 			sem_delete(sem);
 		shm_delete(key);
+		msq_delete(key);
 	}
 }

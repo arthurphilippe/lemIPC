@@ -11,21 +11,31 @@
 	#include <sys/shm.h>
 	#include <sys/ipc.h>
 	#include <sys/sem.h>
+	#include <sys/msg.h>
 
 #define FTOK_FILE_PATH "./.gitignore"
 #define PROJ_ID 0x4242
 
 #define IPC_AFLAGS (SHM_R | SHM_W)
-#ifndef IPC_CFLAGS
-	#define IPC_CFLAGS (IPC_CREAT | SHM_R | SHM_W)
-#endif /* !IPC_CFLAGS */
+#define IPC_CFLAGS (IPC_CREAT | SHM_R | SHM_W)
 #define BOARD_SIDE 20
 #define BOARD_SIZE (BOARD_SIDE * BOARD_SIDE)
 #ifndef NULL
 	#define NULL (void *) 0
 #endif /* !NULL */
 #define RET_ERR -1
-// #define RET_
+#define RET_OK 0
+
+typedef struct	s_msg_data {
+	int	d_b;
+	int	d_a;
+	int	d_c;
+}		msg_data_t;
+
+typedef struct		s_msg {
+	long		m_channel;
+	msg_data_t	m_data;
+}			msg_t;
 
 key_t key_get(void);
 void *shm_get_new(key_t key);
@@ -44,5 +54,11 @@ int sem_value_get(int semId);
 void sem_delete(int sem_suite_id);
 
 void ipc_delete(void);
+
+int msq_get_new(key_t key);
+int msq_get_existing(key_t key);
+void msq_delete(key_t key);
+msg_t msg_collect(int msq_id, long channel);
+void msg_send(int msq_id, long channel, int code);
 
 #endif /* !LEMIPC_H_ */

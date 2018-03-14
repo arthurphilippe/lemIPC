@@ -20,7 +20,11 @@ SRCS		=	src/shm_get.c	\
 			src/sem_value_alter.c	\
 			src/sem_value_get.c	\
 			src/sem_delete.c	\
-			src/ipc_delete.c
+			src/ipc_delete.c	\
+			src/msg_collect.c	\
+			src/msg_send.c		\
+			src/msq_get.c		\
+			src/msq_delete.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
@@ -29,6 +33,8 @@ OBJS		=	$(SRCS:.c=.o)
 TEST		=	unit_tests.out
 
 SRCS_TEST	=	tests/test_sem.c	\
+			tests/test_msg.c	\
+			tests/test_shm.c	\
 
 SRCS_TEST	+=	$(OBJS)
 
