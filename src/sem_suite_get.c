@@ -18,7 +18,7 @@ int sem_suite_get(key_t key)
 	if (sem_set_id == -1) {
 		sem_set_id = semget(key, 1, IPC_CFLAGS);
 		if (sem_set_id == -1) {
-			perror("sem_suite_get:");
+			perror("sem_suite_get");
 			return (-1);
 		}
 		semctl(sem_set_id, 0, SETVAL, 1);
