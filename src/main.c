@@ -14,7 +14,7 @@ int main(void)
 	printf("hi\n");
 	key_t key = key_get();
 	char *addr = shm_get(key);
-	// strcpy(addr, "salut");
+	strcpy(addr, "salut");
 	printf("%s\n", addr);
 	shmdt(addr);
 	shm_delete(key);

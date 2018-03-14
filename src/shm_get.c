@@ -15,7 +15,7 @@ void *shm_get(key_t key)
 	if (shm_id == -1)
 		shm_id = shmget(key, BOARD_SIZE, IPC_CFLAGS);
 	if (shm_id == -1) {
-		perror("shm:");
+		perror("shm");
 		return (NULL);
 	}
 	return (shmat(shm_id, NULL, IPC_AFLAGS));

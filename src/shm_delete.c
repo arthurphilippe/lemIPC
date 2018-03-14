@@ -7,14 +7,6 @@
 
 #include "lemipc.h"
 
-void shm_delete_from_scratch(void)
-{
-	key_t key = key_get();
-
-	if (key != -1)
-		shm_delete(key);
-}
-
 void shm_delete(key_t key)
 {
 	int shm_id = shmget(key, BOARD_SIZE, IPC_AFLAGS);

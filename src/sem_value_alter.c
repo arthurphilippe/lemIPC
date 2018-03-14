@@ -19,10 +19,10 @@ void sem_value_add(int sem_id)
 
 void sem_value_alter(int sem_id, int value)
 {
-	struct sembuf add;
+	struct sembuf op;
 
-	add.sem_num = 0;
-	add.sem_flg = 0;
-	add.sem_op = value;
-	semop(sem_id, &add, 1);
+	op.sem_num = 0;
+	op.sem_flg = 0;
+	op.sem_op = value;
+	semop(sem_id, &op, 1);
 }

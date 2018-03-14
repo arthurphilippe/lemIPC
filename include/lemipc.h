@@ -16,7 +16,9 @@
 #define PROJ_ID 0x4242
 
 #define IPC_AFLAGS (SHM_R | SHM_W)
-#define IPC_CFLAGS (IPC_CREAT | SHM_R | SHM_W)
+#ifndef IPC_CFLAGS
+	#define IPC_CFLAGS (IPC_CREAT | SHM_R | SHM_W)
+#endif /* !IPC_CFLAGS */
 #define BOARD_SIDE 20
 #define BOARD_SIZE (BOARD_SIDE * BOARD_SIDE)
 #ifndef NULL
@@ -39,5 +41,7 @@ void sem_value_sub(int sem_id);
 int sem_value_get(int semId);
 
 void sem_delete(int sem_suite_id);
+
+void ipc_delete(void);
 
 #endif /* !LEMIPC_H_ */

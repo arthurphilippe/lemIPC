@@ -19,7 +19,8 @@ SRCS		=	src/shm_get.c	\
 			src/sem_suite_get.c	\
 			src/sem_value_alter.c	\
 			src/sem_value_get.c	\
-			src/sem_delete.c
+			src/sem_delete.c	\
+			src/ipc_delete.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
@@ -52,8 +53,9 @@ tests: $(TEST) $(NAME)
 
 tests_run: CC=gcc --coverage
 tests_run: tests
-	@./$(TEST) || true
-	@bash ./tests/functional_tests.sh
+	@./$(TEST) --jobs 1 || true
+	@cd tests/ && find -name "*.gcda" -delete -o -name "*.gcno" -delete
+#	 @bash ./tests/functional_tests.sh
 
 $(NAME): $(OBJ_MAIN) $(OBJS)
 	@printf "[\033[0;36mlinking\033[0m]% 41s\r" $(NAME) | tr " " "."
