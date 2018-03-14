@@ -1,0 +1,69 @@
+version: 2
+jobs:
+  full_test:
+    docker:
+      - image: arthurphilippe/epitech-c-cpp-plain
+    steps:
+      - checkout
+      - run:
+          name: Build Project
+          command: make
+      - run:
+          name: Build Unit Tests Suites
+          command: make tests
+      - run:
+          name: Unit Tests Execution
+          environment:
+          command: ./unit_tests.out --jobs 1
+      - run:
+          name: Code Coverage - Processing
+          no_output_timeout: 50s
+          environment:
+            LD_LIBRARY_PATH: "/root/project"
+          command: ./tests/coverage.sh
+      - run:
+          name: Code Coverage - Output
+          command: cat coverage.log
+
+  build_clang:
+    docker:
+      - image: arthurphilippe/clang
+    steps:
+      - checkout
+      - run:
+          name: Build Project Using clang
+          command: make CC=clang CPPFLAGS=-W\ -Wextra\ -Wall\ -Werror\ -Iinclude/\
+
+  epitest:
+    docker:
+      - image: epitechcontent/epitest-docker
+    steps:
+      - checkout
+      - run:
+          name: Build Project
+          command: make tests
+      - run:
+          name: Tidy up
+          command: make clean
+      - run:
+          name: Unit Tests Execution
+          environment:
+            LD_LIBRARY_PATH: "/root/project"
+          command: ./unit_tests.out --jobs 1
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - full_test
+      - build_clang
+  planned:
+    triggers:
+      - schedule:
+          cron: "0 21 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - epitest
