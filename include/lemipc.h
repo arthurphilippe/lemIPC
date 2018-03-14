@@ -28,7 +28,8 @@
 // #define RET_
 
 key_t key_get(void);
-void *shm_get(key_t key);
+void *shm_get_new(key_t key);
+void *shm_get_existing(key_t key);
 
 void shm_delete_from_scratch(void);
 void shm_delete(key_t key);

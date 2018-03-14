@@ -13,7 +13,7 @@ int main(void)
 {
 	printf("hi\n");
 	key_t key = key_get();
-	char *addr = shm_get(key);
+	char *addr = shm_get_new(key);
 	strcpy(addr, "salut");
 	printf("%s\n", addr);
 	shmdt(addr);
