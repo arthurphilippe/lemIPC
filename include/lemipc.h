@@ -90,7 +90,7 @@ int	lem_threads_bstrap(ipcs_t *ipcs);
 int	lem_host(ipcs_t *ipcs);
 int	lem_play(ipcs_t *ipcs);
 
-void	player_move_torward(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
+void	player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
 void	player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos);
 void	player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading);
 

@@ -41,3 +41,5 @@ Test(player, move_by, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	cr_assert_eq(shm_pos_gpid_get(&ipcs, (ivector_t) {4, 2}), 4);
 	cr_assert_eq(shm_pos_gpid_get(&ipcs, pos), 4);
 }
+
+Test(player, move_toward)
