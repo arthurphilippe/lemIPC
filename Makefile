@@ -13,18 +13,18 @@ NAME		=	lemipc
 
 MAIN		=	src/main.c
 
-SRCS		=	src/shm_get.c	\
-			src/shm_delete.c	\
-			src/key_get.c	\
-			src/sem_suite_get.c	\
-			src/sem_value_alter.c	\
-			src/sem_value_get.c	\
-			src/sem_delete.c	\
-			src/ipc_delete.c	\
-			src/msg_collect.c	\
-			src/msg_send.c		\
-			src/msq_get.c		\
-			src/msq_delete.c
+SRCS		=	src/shm/shm_get.c		\
+			src/shm/shm_delete.c		\
+			src/key_get.c			\
+			src/sem/sem_suite_get.c		\
+			src/sem/sem_value_alter.c	\
+			src/sem/sem_value_get.c		\
+			src/sem/sem_delete.c		\
+			src/ipc_delete.c		\
+			src/msg/msg_collect.c		\
+			src/msg/msg_send.c		\
+			src/msg/msq_get.c		\
+			src/msg/msq_delete.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
