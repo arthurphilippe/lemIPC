@@ -12,5 +12,6 @@ int lem_host(ipcs_t *ipcs)
 {
 	(void) ipcs;
 	dprintf(1, "[lem_host]\n");
+	shm_print(ipcs);
 	return (RET_OK);
 }

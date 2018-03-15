@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 #include "lemipc.h"
 
 void *shm_get_existing(key_t key)
@@ -27,5 +28,5 @@ void *shm_get_new(key_t key)
 		perror("shm");
 		return (NULL);
 	}
-	return (shmat(shm_id, NULL, IPC_AFLAGS));
+	return (memset(shmat(shm_id, NULL, IPC_AFLAGS), POS_EMPTY, BOARD_SIZE));
 }

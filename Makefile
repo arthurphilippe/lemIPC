@@ -15,6 +15,9 @@ MAIN		=	src/main.c
 
 SRCS		=	src/shm/shm_get.c		\
 			src/shm/shm_delete.c		\
+			src/shm/shm_put.c		\
+			src/shm/shm_pos.c		\
+			src/shm/shm_print.c		\
 			src/key_get.c			\
 			src/sem/sem_suite_get.c		\
 			src/sem/sem_value_alter.c	\
@@ -29,6 +32,7 @@ SRCS		=	src/shm/shm_get.c		\
 			src/lem/lem_host.c		\
 			src/lem/lem_play.c		\
 			src/lem/lem_threads_bstrap.c	\
+			src/player/player_move.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 

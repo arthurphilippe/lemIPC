@@ -12,9 +12,11 @@
 	#include <sys/ipc.h>
 	#include <sys/sem.h>
 	#include <sys/msg.h>
+	#include <stdbool.h>
 
 #define FTOK_FILE_PATH "./.gitignore"
 #define PROJ_ID 0x4242
+#define POS_EMPTY '.'
 
 #define IPC_AFLAGS (SHM_R | SHM_W)
 #define IPC_CFLAGS (IPC_CREAT | SHM_R | SHM_W)
@@ -28,6 +30,11 @@
 #define EXT_FAILURE 84
 #define EXT_SUCCESS 0
 #define SEM_NB 1
+
+typedef struct	s_ivector {
+	int	v_x;
+	int	v_y;
+}		ivector_t;
 
 typedef struct	s_msg_data {
 	int	d_b;
@@ -52,8 +59,12 @@ key_t	key_get(const char *path);
 void	*shm_get_new(key_t key);
 void	*shm_get_existing(key_t key);
 
+void	shm_print(ipcs_t *ipcs);
 void	shm_delete_from_scratch(void);
 void	shm_delete(key_t key);
+void	shm_put(ipcs_t *ipcs, ivector_t where, char what);
+bool	shm_put_try(ipcs_t *ipcs, ivector_t where, char what);
+bool	shm_pos_is_free(ipcs_t *ipcs, ivector_t pos);
 
 int	sem_suite_get(key_t key);
 
