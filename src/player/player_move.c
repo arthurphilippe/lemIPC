@@ -37,7 +37,7 @@ void player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos)
 }
 
 /*
-** Tries to move a play in the given direction.
+** Tries to move a player in the given direction.
 */
 void player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading)
 {
