@@ -7,7 +7,10 @@
 
 #include "lemipc.h"
 
-void sem_delete(int sem_suite_id)
+void sem_delete(int key)
 {
-	semctl(sem_suite_id, 0, IPC_RMID);
+	int sem_set_id = semget(key, SEM_NB, IPC_AFLAGS);
+
+	if (sem_set_id != -1)
+		semctl(sem_set_id, 0, IPC_RMID);
 }

@@ -25,6 +25,7 @@
 #endif /* !NULL */
 #define RET_ERR -1
 #define RET_OK 0
+#define SEM_NB 1
 
 typedef struct	s_msg_data {
 	int	d_b;
@@ -51,7 +52,7 @@ void sem_value_add(int sem_id);
 void sem_value_sub(int sem_id);
 int sem_value_get(int semId);
 
-void sem_delete(int sem_suite_id);
+void sem_delete(int key);
 
 void ipc_delete(void);
 

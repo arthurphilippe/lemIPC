@@ -10,12 +10,9 @@
 void ipc_delete(void)
 {
 	key_t key = key_get();
-	int sem;
 
 	if (key != -1) {
-		sem = sem_suite_get(key);
-		if (sem != -1)
-			sem_delete(sem);
+		sem_delete(key);
 		shm_delete(key);
 		msq_delete(key);
 	}
