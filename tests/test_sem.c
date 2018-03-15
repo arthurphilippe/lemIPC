@@ -9,16 +9,16 @@
 #include "lemipc.h"
 
 Test(sem, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {
-	key_t key = key_get();
+	key_t key = key_get(FTOK_FILE_PATH);
 	int sem = sem_suite_get(key);
 
 	cr_assert((sem_value_get(sem) == 1));
-	sem_value_sub(sem);
+	sem_value_lock(sem);
 	cr_assert((sem_value_get(sem) == 0));
-	sem_value_add(sem);
-	sem_value_sub(sem);
-	sem_value_add(sem);
-	sem_value_add(sem);
-	sem_value_add(sem);
+	sem_value_unlock(sem);
+	sem_value_lock(sem);
+	sem_value_unlock(sem);
+	sem_value_unlock(sem);
+	sem_value_unlock(sem);
 	cr_assert((sem_value_get(sem) == 3));
 }

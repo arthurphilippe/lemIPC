@@ -7,12 +7,12 @@
 
 #include "lemipc.h"
 
-void sem_value_sub(int sem_id)
+void sem_value_lock(int sem_id)
 {
 	sem_value_alter(sem_id, -1);
 }
 
-void sem_value_add(int sem_id)
+void sem_value_unlock(int sem_id)
 {
 	sem_value_alter(sem_id, 1);
 }

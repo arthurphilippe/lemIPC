@@ -9,7 +9,7 @@
 #include "lemipc.h"
 
 Test(msg, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {
-	key_t key = key_get();
+	key_t key = key_get(FTOK_FILE_PATH);
 	int msq_id = msq_get_new(key);
 
 	msq_id = msq_get_new(key);

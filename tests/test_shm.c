@@ -9,7 +9,7 @@
 #include "lemipc.h"
 
 Test(shm, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {
-	key_t key = key_get();
+	key_t key = key_get(FTOK_FILE_PATH);
 	char *addr = shm_get_new(key);
 
 	strcpy(addr, "salut");
@@ -20,7 +20,7 @@ Test(shm, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {
 }
 
 Test(shm, double_new, .init = ipc_delete_test, .fini = ipc_delete_test) {
-	key_t key = key_get();
+	key_t key = key_get(FTOK_FILE_PATH);
 	char *addr = shm_get_new(key);
 
 	addr = shm_get_new(key);
@@ -32,7 +32,7 @@ Test(shm, double_new, .init = ipc_delete_test, .fini = ipc_delete_test) {
 }
 
 Test(shm, failingSize, .init = ipc_delete_test, .fini = ipc_delete_test) {
-	key_t key = key_get();
+	key_t key = key_get(FTOK_FILE_PATH);
 	int shm_id = shmget(key, 10, IPC_CFLAGS);
 	char *addr = shm_get_new(key);
 
@@ -41,7 +41,7 @@ Test(shm, failingSize, .init = ipc_delete_test, .fini = ipc_delete_test) {
 }
 
 Test(shm, failingUnexisting, .init = ipc_delete_test, .fini = ipc_delete_test) {
-	key_t key = key_get();
+	key_t key = key_get(FTOK_FILE_PATH);
 	char *addr = shm_get_existing(key);
 
 	cr_expect_eq(addr, NULL);

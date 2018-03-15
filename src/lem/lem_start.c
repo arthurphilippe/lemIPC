@@ -11,6 +11,7 @@ int lem_start(const char *path, int team_nb)
 {
 	ipcs_t ipcs;
 
+	ipcs.i_gpid = team_nb;
 	ipcs.i_key = key_get(path);
 	if (ipcs.i_key == RET_OK)
 		return (RET_ERR);
