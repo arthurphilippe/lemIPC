@@ -12,10 +12,8 @@ void *shm_get_existing(key_t key)
 {
 	int shm_id = shmget(key, BOARD_SIZE, IPC_AFLAGS);
 
-	if (shm_id == -1) {
-		perror("shm");
+	if (shm_id == -1)
 		return (NULL);
-	}
 	return (shmat(shm_id, NULL, IPC_AFLAGS));
 }
 

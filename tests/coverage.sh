@@ -21,4 +21,4 @@ else
 fi
 
 echo ":: Cleanning up..."
-make artifacts_clean
+make fclean
