@@ -8,7 +8,7 @@
 #include "criterion/criterion.h"
 #include "lemipc.h"
 
-Test(sem, basic, .init = ipc_delete, .fini = ipc_delete) {
+Test(sem, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	key_t key = key_get();
 	int sem = sem_suite_get(key);
 

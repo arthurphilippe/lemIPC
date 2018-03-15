@@ -8,7 +8,7 @@
 #include "criterion/criterion.h"
 #include "lemipc.h"
 
-Test(msg, basic, .init = ipc_delete, .fini = ipc_delete) {
+Test(msg, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	key_t key = key_get();
 	int msq_id = msq_get_new(key);
 

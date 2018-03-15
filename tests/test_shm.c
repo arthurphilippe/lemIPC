@@ -8,7 +8,7 @@
 #include "criterion/criterion.h"
 #include "lemipc.h"
 
-Test(shm, basic, .init = ipc_delete, .fini = ipc_delete) {
+Test(shm, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	key_t key = key_get();
 	char *addr = shm_get_new(key);
 
@@ -19,7 +19,7 @@ Test(shm, basic, .init = ipc_delete, .fini = ipc_delete) {
 	cr_assert_str_eq(addr, "salut");
 }
 
-Test(shm, double_new, .init = ipc_delete, .fini = ipc_delete) {
+Test(shm, double_new, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	key_t key = key_get();
 	char *addr = shm_get_new(key);
 
@@ -31,7 +31,7 @@ Test(shm, double_new, .init = ipc_delete, .fini = ipc_delete) {
 	cr_assert_str_eq(addr, "salut");
 }
 
-Test(shm, failingSize, .init = ipc_delete, .fini = ipc_delete) {
+Test(shm, failingSize, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	key_t key = key_get();
 	int shm_id = shmget(key, 10, IPC_CFLAGS);
 	char *addr = shm_get_new(key);
@@ -40,7 +40,7 @@ Test(shm, failingSize, .init = ipc_delete, .fini = ipc_delete) {
 	shmctl(shm_id, IPC_RMID, NULL);
 }
 
-Test(shm, failingUnexisting, .init = ipc_delete, .fini = ipc_delete) {
+Test(shm, failingUnexisting, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	key_t key = key_get();
 	char *addr = shm_get_existing(key);
 
