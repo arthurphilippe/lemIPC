@@ -5,7 +5,7 @@
 ** test_msg
 */
 
-#include "criterion/criterion.h"
+#include <criterion/criterion.h>
 #include "lemipc.h"
 
 Test(msg, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {

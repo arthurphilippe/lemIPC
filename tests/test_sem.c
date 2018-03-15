@@ -5,7 +5,7 @@
 ** test_sem
 */
 
-#include "criterion/criterion.h"
+#include <criterion/criterion.h>
 #include "lemipc.h"
 
 Test(sem, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {

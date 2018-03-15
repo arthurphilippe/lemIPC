@@ -65,6 +65,7 @@ void	shm_delete(key_t key);
 void	shm_put(ipcs_t *ipcs, ivector_t where, char what);
 bool	shm_put_try(ipcs_t *ipcs, ivector_t where, char what);
 bool	shm_pos_is_free(ipcs_t *ipcs, ivector_t pos);
+int	shm_pos_gpid_get(ipcs_t *ipcs, ivector_t pos);
 
 int	sem_suite_get(key_t key);
 
@@ -88,5 +89,9 @@ int	lem_start(const char *path, int team_nb);
 int	lem_threads_bstrap(ipcs_t *ipcs);
 int	lem_host(ipcs_t *ipcs);
 int	lem_play(ipcs_t *ipcs);
+
+void	player_move_torward(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
+void	player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos);
+void	player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading);
 
 #endif /* !LEMIPC_H_ */
