@@ -25,6 +25,8 @@
 #endif /* !NULL */
 #define RET_ERR -1
 #define RET_OK 0
+#define EXT_FAILURE 84
+#define EXT_SUCCESS 0
 #define SEM_NB 1
 
 typedef struct	s_msg_data {
@@ -38,28 +40,40 @@ typedef struct		s_msg {
 	msg_data_t	m_data;
 }			msg_t;
 
-key_t key_get(void);
-void *shm_get_new(key_t key);
-void *shm_get_existing(key_t key);
+typedef struct	s_ipcs {
+	char	*i_shmsg;
+	key_t	i_key;
+	int	i_sem_set;
+	int	i_msq;
+}		ipcs_t;
 
-void shm_delete_from_scratch(void);
-void shm_delete(key_t key);
+key_t	key_get(const char *path);
+void	*shm_get_new(key_t key);
+void	*shm_get_existing(key_t key);
 
-int sem_suite_get(key_t key);
+void	shm_delete_from_scratch(void);
+void	shm_delete(key_t key);
 
-void sem_value_alter(int sem_id, int value);
-void sem_value_add(int sem_id);
-void sem_value_sub(int sem_id);
-int sem_value_get(int semId);
+int	sem_suite_get(key_t key);
 
-void sem_delete(int key);
+void	sem_value_alter(int sem_id, int value);
+void	sem_value_add(int sem_id);
+void	sem_value_sub(int sem_id);
+int	sem_value_get(int semId);
 
-void ipc_delete(void);
+void	sem_delete(int key);
 
-int msq_get_new(key_t key);
-int msq_get_existing(key_t key);
-void msq_delete(key_t key);
-msg_t msg_collect(int msq_id, long channel);
-void msg_send(int msq_id, long channel, int code);
+void	ipc_delete(const char *path);
+
+int	msq_get_new(key_t key);
+int	msq_get_existing(key_t key);
+void	msq_delete(key_t key);
+msg_t	msg_collect(int msq_id, long channel);
+void	msg_send(int msq_id, long channel, int code);
+
+int	lem_start(const char *path, int team_nb);
+int	lem_threads_bstrap(ipcs_t *ipcs);
+int	lem_host(ipcs_t *ipcs);
+int	lem_play(ipcs_t *ipcs);
 
 #endif /* !LEMIPC_H_ */

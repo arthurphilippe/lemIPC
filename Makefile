@@ -24,7 +24,11 @@ SRCS		=	src/shm/shm_get.c		\
 			src/msg/msg_collect.c		\
 			src/msg/msg_send.c		\
 			src/msg/msq_get.c		\
-			src/msg/msq_delete.c
+			src/msg/msq_delete.c		\
+			src/lem/lem_start.c		\
+			src/lem/lem_host.c		\
+			src/lem/lem_play.c		\
+			src/lem/lem_threads_bstrap.c	\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 

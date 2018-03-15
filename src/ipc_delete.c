@@ -7,9 +7,9 @@
 
 #include "lemipc.h"
 
-void ipc_delete(void)
+void ipc_delete(const char *path)
 {
-	key_t key = key_get();
+	key_t key = key_get(path);
 
 	if (key != -1) {
 		sem_delete(key);

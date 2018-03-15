@@ -11,11 +11,7 @@
 
 int main(void)
 {
-	printf("hi\n");
-	key_t key = key_get();
-	char *addr = shm_get_new(key);
-	strcpy(addr, "salut");
-	printf("%s\n", addr);
-	shmdt(addr);
-	shm_delete(key);
+	dprintf(1, "hi\n");
+	lem_start(FTOK_FILE_PATH, 1);
+	ipc_delete(FTOK_FILE_PATH);
 }

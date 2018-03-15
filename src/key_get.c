@@ -10,7 +10,7 @@
 /*
 ** Return a key to use with IPC functions
 */
-key_t key_get(void)
+key_t key_get(const char *path)
 {
-	return (ftok(FTOK_FILE_PATH, PROJ_ID));
+	return (ftok(path, PROJ_ID));
 }
