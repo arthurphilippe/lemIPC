@@ -33,11 +33,8 @@ static size_t get_found_nb(uint team_found[])
 {
 	size_t i = 0;
 
-	while (i < 10) {
-		if (!team_found[i])
-			return (i);
+	while (i < 10 && team_found[i])
 		i += 1;
-	}
 	return (i);
 }
 

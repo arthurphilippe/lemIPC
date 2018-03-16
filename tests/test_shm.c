@@ -63,4 +63,14 @@ Test(shm, team_count) {
 	shmsg[276] = '3';
 	shmsg[321] = '3';
 	cr_assert_eq(shm_team_count(shmsg), (size_t) 3);
+	shmsg[322] = '4';
+	shmsg[323] = '5';
+	shmsg[324] = '6';
+	shmsg[325] = '7';
+	shmsg[326] = '8';
+	shmsg[327] = '9';
+	cr_assert_eq(shm_team_count(shmsg), (size_t) 9);
+	shmsg[328] = 10 + '0';
+	shmsg[328] = 11 + '0';
+	cr_assert_eq(shm_team_count(shmsg), (size_t) 10);
 }
