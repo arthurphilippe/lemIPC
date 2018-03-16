@@ -75,6 +75,7 @@ void	shm_put(ipcs_t *ipcs, ivector_t where, char what);
 bool	shm_put_try(ipcs_t *ipcs, ivector_t where, char what);
 bool	shm_pos_is_free(ipcs_t *ipcs, ivector_t pos);
 int	shm_pos_gpid_get(ipcs_t *ipcs, ivector_t pos);
+size_t	shm_team_count(char *shmsg);
 
 int	sem_suite_get(key_t key);
 
@@ -103,6 +104,7 @@ int	lem_host(ipcs_t *ipcs);
 int	lem_play(ipcs_t *ipcs);
 
 size_t	host_wait_startup(ipcs_t *ipcs);
+void	host_loop(ipcs_t *ipcs, size_t player_count);
 
 void	player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
 void	player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos);

@@ -18,6 +18,7 @@ SRCS		=	src/shm/shm_get.c		\
 			src/shm/shm_put.c		\
 			src/shm/shm_pos.c		\
 			src/shm/shm_print.c		\
+			src/shm/shm_teams_count.c	\
 			src/key_get.c			\
 			src/sem/sem_suite_get.c		\
 			src/sem/sem_value_alter.c	\
