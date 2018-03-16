@@ -17,9 +17,12 @@
 #define FTOK_FILE_PATH "./.gitignore"
 #define PROJ_ID 0x4242
 #define POS_EMPTY '.'
-#define MSG_CHAN_HOST 1
-#define MSG_CHAN_BRD 2
-#define MSG_CHAN_BASE 20
+#define MSG_CH_HOST 1
+#define MSG_CH_BRD 2
+#define MSG_CH_BASE 20
+
+#define MSG_PLAYER_NEW 1
+#define MSG_PLAYER_RDY 0
 
 #define IPC_AFLAGS (SHM_R | SHM_W)
 #define IPC_CFLAGS (IPC_CREAT | SHM_R | SHM_W)
@@ -43,11 +46,11 @@ typedef struct	s_msg_data {
 	int	d_a;
 	int	d_b;
 	int	d_c;
-}		msg_data_t;
+}		payld_t;
 
 typedef struct		s_msg {
 	long		m_channel;
-	msg_data_t	m_data;
+	payld_t	m_data;
 }			msg_t;
 
 typedef struct	s_ipcs {
@@ -82,20 +85,24 @@ void	sem_delete(int key);
 void	ipc_delete(const char *path);
 void	ipc_delete_test(void);
 int	ipc_init_new(ipcs_t *ipcs);
+int	ipc_init_existing(ipcs_t *ipcs);
 
 int	msq_get_new(key_t key);
 int	msq_get_existing(key_t key);
 void	msq_delete(key_t key);
-msg_t	msg_collect(int msq_id, long channel, int flags);
-void	msg_send(int msq_id, long channel, msg_data_t payload);
+payld_t	msg_collect(int msq_id, long channel, int flags);
+void	msg_send(int msq_id, long channel, payld_t payload);
 
 int	lem_start(const char *path, int team_nb);
 int	lem_threads_bstrap(ipcs_t *ipcs);
 int	lem_host(ipcs_t *ipcs);
 int	lem_play(ipcs_t *ipcs);
 
+size_t	host_wait_startup(ipcs_t *ipcs);
+
 void	player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
 void	player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos);
 void	player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading);
+void	player_wait_startup(ipcs_t *ipcs);
 
 #endif /* !LEMIPC_H_ */

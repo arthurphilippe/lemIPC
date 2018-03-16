@@ -13,5 +13,4 @@ int main(void)
 {
 	dprintf(1, "hi\n");
 	lem_start(FTOK_FILE_PATH, 1);
-	ipc_delete(FTOK_FILE_PATH);
 }

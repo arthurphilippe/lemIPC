@@ -7,10 +7,10 @@
 
 #include "lemipc.h"
 
-msg_t msg_collect(int msq_id, long channel, int flags)
+payld_t msg_collect(int msq_id, long channel, int flags)
 {
 	msg_t msg;
 
 	msgrcv(msq_id, &msg, sizeof(msg), channel, flags);
-	return (msg);
+	return (msg.m_data);
 }

@@ -24,7 +24,7 @@ SRCS		=	src/shm/shm_get.c		\
 			src/sem/sem_value_get.c		\
 			src/sem/sem_delete.c		\
 			src/ipc_delete.c		\
-			src/ipc_init.c		\
+			src/ipc_init.c			\
 			src/msg/msg_collect.c		\
 			src/msg/msg_send.c		\
 			src/msg/msq_get.c		\
@@ -33,7 +33,9 @@ SRCS		=	src/shm/shm_get.c		\
 			src/lem/lem_host.c		\
 			src/lem/lem_play.c		\
 			src/lem/lem_threads_bstrap.c	\
-			src/player/player_move.c
+			src/player/player_move.c	\
+			src/player/player_wait.c	\
+			src/host/host_wait.c		\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 

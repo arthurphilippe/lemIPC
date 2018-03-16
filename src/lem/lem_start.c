@@ -20,8 +20,10 @@ int lem_start(const char *path, int team_nb)
 	if (ipcs.i_shmsg == NULL) {
 		if (!ipc_init_new(&ipcs))
 			lem_threads_bstrap(&ipcs);
+		ipc_delete(path);
 	} else {
-		lem_play(&ipcs);
+		if (!ipc_init_existing(&ipcs))
+			lem_play(&ipcs);
 	}
 	return (RET_OK);
 }
