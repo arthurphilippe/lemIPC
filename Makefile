@@ -24,6 +24,7 @@ SRCS		=	src/shm/shm_get.c		\
 			src/sem/sem_value_get.c		\
 			src/sem/sem_delete.c		\
 			src/ipc_delete.c		\
+			src/ipc_init.c		\
 			src/msg/msg_collect.c		\
 			src/msg/msg_send.c		\
 			src/msg/msq_get.c		\

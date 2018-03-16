@@ -17,6 +17,9 @@
 #define FTOK_FILE_PATH "./.gitignore"
 #define PROJ_ID 0x4242
 #define POS_EMPTY '.'
+#define MSG_CHAN_HOST 1
+#define MSG_CHAN_BRD 2
+#define MSG_CHAN_BASE 20
 
 #define IPC_AFLAGS (SHM_R | SHM_W)
 #define IPC_CFLAGS (IPC_CREAT | SHM_R | SHM_W)
@@ -37,8 +40,8 @@ typedef struct	s_ivector {
 }		ivector_t;
 
 typedef struct	s_msg_data {
-	int	d_b;
 	int	d_a;
+	int	d_b;
 	int	d_c;
 }		msg_data_t;
 
@@ -78,12 +81,13 @@ void	sem_delete(int key);
 
 void	ipc_delete(const char *path);
 void	ipc_delete_test(void);
+int	ipc_init_new(ipcs_t *ipcs);
 
 int	msq_get_new(key_t key);
 int	msq_get_existing(key_t key);
 void	msq_delete(key_t key);
-msg_t	msg_collect(int msq_id, long channel);
-void	msg_send(int msq_id, long channel, int code);
+msg_t	msg_collect(int msq_id, long channel, int flags);
+void	msg_send(int msq_id, long channel, msg_data_t payload);
 
 int	lem_start(const char *path, int team_nb);
 int	lem_threads_bstrap(ipcs_t *ipcs);

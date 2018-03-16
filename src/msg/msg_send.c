@@ -7,11 +7,11 @@
 
 #include "lemipc.h"
 
-void msg_send(int msq_id, long channel, int code)
+void msg_send(int msq_id, long channel, msg_data_t payload)
 {
 	msg_t	msg;
 
 	msg.m_channel = channel;
-	msg.m_data.d_a = code;
+	msg.m_data = payload;
 	msgsnd(msq_id, &msg, sizeof(msg), 0);
 }

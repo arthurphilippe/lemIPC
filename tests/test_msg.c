@@ -13,14 +13,14 @@ Test(msg, basic, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	int msq_id = msq_get_new(key);
 
 	msq_id = msq_get_new(key);
-	msg_send(msq_id, 1, 42);
-	msg_t msg = msg_collect(msq_id, 1);
+	msg_send(msq_id, 1, (msg_data_t) {42, 0, 0});
+	msg_t msg = msg_collect(msq_id, 1, 0);
 	cr_assert_eq(msg.m_data.d_a, 42);
-	msg_send(msq_id, 1, 37);
-	msg_send(msq_id, 1, 99);
-	msg = msg_collect(msq_id, 1);
+	msg_send(msq_id, 1, (msg_data_t) {37, 0, 0});
+	msg_send(msq_id, 1, (msg_data_t) {99, 0, 0});
+	msg = msg_collect(msq_id, 1, 0);
 	cr_assert_eq(msg.m_data.d_a, 37);
 	msq_id = msq_get_existing(key);
-	msg = msg_collect(msq_id, 1);
+	msg = msg_collect(msq_id, 1, 0);
 	cr_assert_eq(msg.m_data.d_a, 99);
 }

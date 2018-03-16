@@ -18,8 +18,7 @@ int lem_start(const char *path, int team_nb)
 	ipcs.i_shmsg = shm_get_existing(ipcs.i_key);
 	// TODO: have a function dedicated to the creation of IPC ressources
 	if (ipcs.i_shmsg == NULL) {
-		ipcs.i_shmsg = shm_get_new(ipcs.i_key);
-		if (ipcs.i_shmsg)
+		if (!ipc_init_new(&ipcs))
 			lem_threads_bstrap(&ipcs);
 	} else {
 		lem_play(&ipcs);
