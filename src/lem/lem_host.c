@@ -12,9 +12,10 @@
 int lem_host(ipcs_t *ipcs)
 {
 	usleep(100);
-	dprintf(1, "[lem_host]\n");
+	dprintf(1, "[host] starting...\n");
 	host_wait_startup(ipcs);
+	dprintf(1, "[host] started\n");
 	shm_print(ipcs);
-	dprintf(1, "[/lem_host]\n");
+	dprintf(1, "[host] terminating...\n");
 	return (RET_OK);
 }

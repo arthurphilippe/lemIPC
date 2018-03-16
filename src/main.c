@@ -7,10 +7,15 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "lemipc.h"
 
-int main(void)
+int main(int ac, char **av)
 {
-	dprintf(1, "hi\n");
-	lem_start(FTOK_FILE_PATH, 1);
+	if (ac == 3) {
+		dprintf(1, "hi\n");
+		lem_start(av[1], atoi(av[2]));
+		return (EXT_SUCCESS);
+	}
+	return (EXT_FAILURE);
 }

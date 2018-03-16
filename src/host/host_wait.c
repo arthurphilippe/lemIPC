@@ -5,6 +5,7 @@
 ** host_wait
 */
 
+#include <stdio.h>
 #include "lemipc.h"
 
 size_t host_wait_startup(ipcs_t *ipcs)
@@ -12,8 +13,9 @@ size_t host_wait_startup(ipcs_t *ipcs)
 	bool is_game_ready = false;
 	int first_gpid = -1;
 	payld_t data;
-	size_t total_players;
+	size_t total_players = 0;
 
+	printf("[host] waiting for players...\n");
 	while (!is_game_ready) {
 		data = msg_collect(ipcs->i_msq, MSG_CH_HOST, 0);
 		if (first_gpid == -1) {
@@ -24,5 +26,6 @@ size_t host_wait_startup(ipcs_t *ipcs)
 		total_players += 1;
 	}
 	msg_send(ipcs->i_msq, MSG_CH_BRD, (payld_t) {0, 0, 0});
+	printf("[host] %ld players connected. Ready.\n", total_players);
 	return (total_players);
 }

@@ -5,10 +5,17 @@
 ** ipc_init
 */
 
+#include <signal.h>
 #include "lemipc.h"
 
 int ipc_init_new(ipcs_t *ipcs)
 {
+	struct sigaction sa;
+
+	sa.sa_handler = ipc_delete_sigint;
+	sa.sa_flags = SA_RESTART;
+	if (sigaction(SIGINT, &sa, NULL) == -1)
+		return (true);
 	ipcs->i_shmsg = shm_get_new(ipcs->i_key);
 	ipcs->i_msq = msq_get_new(ipcs->i_key);
 	ipcs->i_sem_set = sem_suite_get(ipcs->i_key);

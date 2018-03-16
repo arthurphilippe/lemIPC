@@ -13,5 +13,5 @@ void msg_send(int msq_id, long channel, payld_t payload)
 
 	msg.m_channel = channel;
 	msg.m_data = payload;
-	msgsnd(msq_id, &msg, sizeof(msg), 0);
+	msgsnd(msq_id, &msg, sizeof(payld_t), 0);
 }

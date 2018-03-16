@@ -37,6 +37,9 @@
 #define EXT_SUCCESS 0
 #define SEM_NB 1
 
+extern char *g_key_path;
+
+
 typedef struct	s_ivector {
 	int	v_x;
 	int	v_y;
@@ -84,6 +87,7 @@ void	sem_delete(int key);
 
 void	ipc_delete(const char *path);
 void	ipc_delete_test(void);
+void	ipc_delete_sigint(int signum);
 int	ipc_init_new(ipcs_t *ipcs);
 int	ipc_init_existing(ipcs_t *ipcs);
 

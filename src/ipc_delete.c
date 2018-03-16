@@ -5,6 +5,7 @@
 ** ipc_delete
 */
 
+#include <stdlib.h>
 #include "lemipc.h"
 
 void ipc_delete(const char *path)
@@ -27,4 +28,11 @@ void ipc_delete_test(void)
 		shm_delete(key);
 		msq_delete(key);
 	}
+}
+
+void ipc_delete_sigint(int signum)
+{
+	(void) signum;
+	ipc_delete(g_key_path);
+	exit(130);
 }
