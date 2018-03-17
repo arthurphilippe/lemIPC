@@ -18,7 +18,7 @@ void player_loop(ipcs_t *ipcs, ivector_t pos)
 		player_move_towards(ipcs, &pos, (ivector_t) {10, 10});
 		sem_value_unlock(ipcs->i_sem_set);
 		errno = 0;
-		msg = msg_collect(ipcs->i_msq, MSG_CH_BRD, IPC_NOWAIT);
+		msg = msg_collect_repeat(ipcs->i_msq, MSG_CH_BRD, IPC_NOWAIT);
 		usleep(100);
 	} while (msg.p_a != MSG_END);
 }

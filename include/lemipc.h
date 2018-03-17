@@ -98,6 +98,7 @@ int	msq_get_new(key_t key);
 int	msq_get_existing(key_t key);
 void	msq_delete(key_t key);
 payld_t	msg_collect(int msq_id, long channel, int flags);
+payld_t msg_collect_repeat(int msq_id, long channel, int flags);
 void	msg_send(int msq_id, long channel, payld_t payload);
 
 int	lem_start(const char *path, int team_nb);
