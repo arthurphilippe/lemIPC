@@ -10,13 +10,11 @@
 
 void sem_value_lock(int sem_id)
 {
-	// dprintf(1, "locking\n");
 	sem_value_alter(sem_id, -1);
 }
 
 void sem_value_unlock(int sem_id)
 {
-	// dprintf(1, "unlocking\n");
 	sem_value_alter(sem_id, 1);
 }
 

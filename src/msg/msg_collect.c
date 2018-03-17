@@ -14,5 +14,7 @@ payld_t msg_collect(int msq_id, long channel, int flags)
 
 	memset(&msg, 0, sizeof(msg_t));
 	msgrcv(msq_id, &msg, sizeof(msg), channel, flags);
+	if (channel == MSG_CH_BRD && msg.m_data.p_a)
+		msg_send(msq_id, MSG_CH_BRD, msg.m_data);
 	return (msg.m_data);
 }
