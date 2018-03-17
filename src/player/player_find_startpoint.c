@@ -13,13 +13,11 @@ ivector_t player_find_startpoint(ipcs_t *ipcs)
 	ivector_t pos;
 
 	if (ipcs->i_gpid == 1) {
-		printf("stpt 1\n");
 		pos = (ivector_t) {1, 1};
 		while (!player_move_to(ipcs, &pos, pos)) {
 			pos.v_y += 1;
 		}
 	} else if (ipcs->i_gpid == 2) {
-		printf("stpt 2\n");
 		pos = (ivector_t) {4, 1};
 		while (!player_move_to(ipcs, &pos, pos)) {
 			pos.v_y += 1;
@@ -35,6 +33,6 @@ ivector_t player_find_startpoint(ipcs_t *ipcs)
 			pos.v_x += 1;
 		}
 	}
-	printf("success %d %d\n", pos.v_x, pos.v_y);
+	printf("[player] placed at %d, %d\n", pos.v_x, pos.v_y);
 	return (pos);
 }

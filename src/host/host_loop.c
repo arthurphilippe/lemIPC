@@ -11,6 +11,8 @@
 void host_loop(ipcs_t *ipcs)
 {
 	size_t team_count;
+	size_t debug_loops = 0;
+
 	usleep(100);
 	do {
 		sem_value_lock(ipcs->i_sem_set);
@@ -18,5 +20,5 @@ void host_loop(ipcs_t *ipcs)
 		team_count = shm_teams_count(ipcs->i_shmsg);
 		sem_value_unlock(ipcs->i_sem_set);
 		usleep(100);
-	} while (team_count > 1);
+	} while (team_count > 1 && debug_loops++ < 10);
 }
