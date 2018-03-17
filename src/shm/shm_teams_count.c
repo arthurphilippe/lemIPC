@@ -38,7 +38,7 @@ static size_t get_found_nb(uint team_found[])
 	return (i);
 }
 
-size_t shm_team_count(char *shmsg)
+size_t shm_teams_count(char *shmsg)
 {
 	uint team_found[10];
 

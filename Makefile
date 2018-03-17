@@ -13,30 +13,34 @@ NAME		=	lemipc
 
 MAIN		=	src/main.c
 
-SRCS		=	src/shm/shm_get.c		\
-			src/shm/shm_delete.c		\
-			src/shm/shm_put.c		\
-			src/shm/shm_pos.c		\
-			src/shm/shm_print.c		\
-			src/shm/shm_teams_count.c	\
-			src/key_get.c			\
-			src/sem/sem_suite_get.c		\
-			src/sem/sem_value_alter.c	\
-			src/sem/sem_value_get.c		\
-			src/sem/sem_delete.c		\
-			src/ipc_delete.c		\
-			src/ipc_init.c			\
-			src/msg/msg_collect.c		\
-			src/msg/msg_send.c		\
-			src/msg/msq_get.c		\
-			src/msg/msq_delete.c		\
-			src/lem/lem_start.c		\
-			src/lem/lem_host.c		\
-			src/lem/lem_play.c		\
-			src/lem/lem_threads_bstrap.c	\
-			src/player/player_move.c	\
-			src/player/player_wait.c	\
-			src/host/host_wait.c		\
+SRCS		=	src/shm/shm_get.c			\
+			src/shm/shm_delete.c			\
+			src/shm/shm_put.c			\
+			src/shm/shm_pos.c			\
+			src/shm/shm_print.c			\
+			src/shm/shm_teams_count.c		\
+			src/key_get.c				\
+			src/sem/sem_suite_get.c			\
+			src/sem/sem_value_alter.c		\
+			src/sem/sem_value_get.c			\
+			src/sem/sem_delete.c			\
+			src/ipc_delete.c			\
+			src/ipc_init.c				\
+			src/msg/msg_collect.c			\
+			src/msg/msg_send.c			\
+			src/msg/msq_get.c			\
+			src/msg/msq_delete.c			\
+			src/lem/lem_start.c			\
+			src/lem/lem_host.c			\
+			src/lem/lem_play.c			\
+			src/lem/lem_threads_bstrap.c		\
+			src/player/player_loop.c		\
+			src/player/player_move.c		\
+			src/player/player_wait.c		\
+			src/player/player_find_startpoint.c	\
+			src/host/host_loop.c			\
+			src/host/host_wait.c			\
+			src/host/host_terminate.c		\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 

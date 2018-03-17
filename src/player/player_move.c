@@ -11,7 +11,7 @@
 /*
 ** Tries to move a player closer to the position given as aim.
 */
-void player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim)
+bool player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim)
 {
 	ivector_t new_pos = *curr;
 
@@ -22,24 +22,28 @@ void player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim)
 	if (shm_put_try(ipcs, new_pos, (char) ipcs->i_gpid + '0')) {
 		shm_put(ipcs, *curr, POS_EMPTY);
 		*curr = new_pos;
+		return (true);
 	}
+	return (false);
 }
 
 /*
 ** Tries to move a player directly at the new position.
 */
-void player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos)
+bool player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos)
 {
 	if (shm_put_try(ipcs, new_pos, (char) ipcs->i_gpid + '0')) {
-		shm_put(ipcs, *curr, POS_EMPTY);
+		// shm_put(ipcs, *curr, POS_EMPTY);
 		*curr = new_pos;
+		return (true);
 	}
+	return (false);
 }
 
 /*
 ** Tries to move a player in the given direction.
 */
-void player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading)
+bool player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading)
 {
 	ivector_t new_pos = {0, 0};
 
@@ -48,5 +52,7 @@ void player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading)
 	if (shm_put_try(ipcs, new_pos, (char) ipcs->i_gpid + '0')) {
 		shm_put(ipcs, *curr, POS_EMPTY);
 		*curr = new_pos;
+		return (true);
 	}
+	return (false);
 }

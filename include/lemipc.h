@@ -23,6 +23,8 @@
 
 #define MSG_PLAYER_NEW 1
 #define MSG_PLAYER_RDY 0
+#define MSG_CYCLE 1
+#define MSG_END 2
 
 #define IPC_AFLAGS (SHM_R | SHM_W)
 #define IPC_CFLAGS (IPC_CREAT | SHM_R | SHM_W)
@@ -45,15 +47,15 @@ typedef struct	s_ivector {
 	int	v_y;
 }		ivector_t;
 
-typedef struct	s_msg_data {
-	int	d_a;
-	int	d_b;
-	int	d_c;
+typedef struct	s_payld {
+	int	p_a;
+	int	p_b;
+	int	p_c;
 }		payld_t;
 
 typedef struct		s_msg {
 	long		m_channel;
-	payld_t	m_data;
+	payld_t		m_data;
 }			msg_t;
 
 typedef struct	s_ipcs {
@@ -75,7 +77,7 @@ void	shm_put(ipcs_t *ipcs, ivector_t where, char what);
 bool	shm_put_try(ipcs_t *ipcs, ivector_t where, char what);
 bool	shm_pos_is_free(ipcs_t *ipcs, ivector_t pos);
 int	shm_pos_gpid_get(ipcs_t *ipcs, ivector_t pos);
-size_t	shm_team_count(char *shmsg);
+size_t	shm_teams_count(char *shmsg);
 
 int	sem_suite_get(key_t key);
 
@@ -104,11 +106,13 @@ int	lem_host(ipcs_t *ipcs);
 int	lem_play(ipcs_t *ipcs);
 
 size_t	host_wait_startup(ipcs_t *ipcs);
-void	host_loop(ipcs_t *ipcs, size_t player_count);
+void	host_loop(ipcs_t *ipcs);
 
-void	player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
-void	player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos);
-void	player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading);
+bool	player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
+bool	player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos);
+bool	player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading);
 void	player_wait_startup(ipcs_t *ipcs);
+ivector_t player_find_startpoint(ipcs_t *ipcs);
+void	player_loop(ipcs_t *ipcs, ivector_t pos);
 
 #endif /* !LEMIPC_H_ */

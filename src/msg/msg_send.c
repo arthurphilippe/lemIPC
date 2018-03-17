@@ -5,6 +5,7 @@
 ** msg_send
 */
 
+#include <stdio.h>
 #include "lemipc.h"
 
 void msg_send(int msq_id, long channel, payld_t payload)
@@ -14,4 +15,5 @@ void msg_send(int msq_id, long channel, payld_t payload)
 	msg.m_channel = channel;
 	msg.m_data = payload;
 	msgsnd(msq_id, &msg, sizeof(payld_t), 0);
+	dprintf(1, "message sent to %ld\n", channel);
 }

@@ -11,14 +11,13 @@
 
 int lem_host(ipcs_t *ipcs)
 {
-	size_t player_count;
-
 	usleep(100);
 	dprintf(1, "[host] starting...\n");
-	player_count = host_wait_startup(ipcs);
-	(void) player_count;
+	host_wait_startup(ipcs);
 	dprintf(1, "[host] started\n");
-	shm_print(ipcs);
+	host_loop(ipcs);
+	msg_send(ipcs->i_msq, MSG_CH_BRD, (payld_t) {MSG_END, 0, 0});
+	usleep(1000000);
 	dprintf(1, "[host] terminating...\n");
 	return (RET_OK);
 }
