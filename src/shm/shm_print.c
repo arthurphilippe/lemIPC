@@ -5,6 +5,7 @@
 ** shm_print
 */
 
+#include <stdio.h>
 #include <unistd.h>
 #include "lemipc.h"
 
