@@ -51,7 +51,8 @@ TEST		=	unit_tests.out
 SRCS_TEST	=	tests/test_sem.c	\
 			tests/test_msg.c	\
 			tests/test_shm.c	\
-			tests/test_player.c
+			tests/test_player.c	\
+			tests/test_ipc.c
 
 SRCS_TEST	+=	$(OBJS)
 

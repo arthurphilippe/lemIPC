@@ -60,5 +60,20 @@ Test(player, move_toward, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	cr_assert_eq(shm_pos_gpid_get(&ipcs, (ivector_t) {3, 1}), 7);
 	player_move_towards(&ipcs, &pos, (ivector_t) {3, 3});
 	cr_assert_eq(shm_pos_gpid_get(&ipcs, (ivector_t) {3, 2}), 7);
+}
 
+Test(player, place, .init = ipc_delete_test, .fini = ipc_delete_test) {
+	ipcs_t ipcs;
+
+	ipcs.i_gpid = 1;
+	ipcs.i_key = key_get(FTOK_FILE_PATH);
+
+	ipc_init_new(&ipcs);
+	player_find_startpoint(&ipcs);
+	ipcs.i_gpid = 2;
+	player_find_startpoint(&ipcs);
+	ipcs.i_gpid = 3;
+	player_find_startpoint(&ipcs);
+	ipcs.i_gpid = 4;
+	player_find_startpoint(&ipcs);
 }
