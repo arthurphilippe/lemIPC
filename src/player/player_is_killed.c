@@ -32,5 +32,7 @@ bool player_is_killed(ipcs_t *ipcs, ivector_t pos)
 			mod.v_x += 1;
 		mod.v_y = (mod.v_y == 1) ? -1 : mod.v_y + 1;
 	}
+	if (foe_count >= 2)
+		dprintf(1, "I am dead\n");
 	return (foe_count >= 2);
 }

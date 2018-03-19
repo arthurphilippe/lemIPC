@@ -14,7 +14,8 @@ bool shm_pos_is_free(ipcs_t *ipcs, ivector_t pos)
 {
 	size_t idx = pos.v_y * (BOARD_SIZE / BOARD_SIDE) + pos.v_x;
 
-	return (ipcs->i_shmsg[idx] == POS_EMPTY);
+	return (pos.v_x < BOARD_SIDE && pos.v_y < BOARD_SIDE
+		&& ipcs->i_shmsg[idx] == POS_EMPTY);
 }
 
 /*
