@@ -77,3 +77,40 @@ Test(player, place, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	ipcs.i_gpid = 4;
 	player_find_startpoint(&ipcs);
 }
+
+Test(player, kill1, .init = ipc_delete_test, .fini = ipc_delete_test) {
+	ipcs_t ipcs;
+	ivector_t pos;
+
+	ipcs.i_gpid = 1;
+	ipcs.i_key = key_get(FTOK_FILE_PATH);
+	ipc_init_new(&ipcs);
+
+	player_move_to(&ipcs, &pos, (ivector_t) {14, 12});
+	ipcs.i_gpid = 2;
+	player_move_to(&ipcs, &pos, (ivector_t) {13, 12});
+	player_move_to(&ipcs, &pos, (ivector_t) {13, 11});
+	pos.v_x = 14;
+	pos.v_y = 12;
+	ipcs.i_gpid = 1;
+	cr_assert_eq(player_is_killed(&ipcs, pos), true);
+}
+
+Test(player, kill2fail, .init = ipc_delete_test, .fini = ipc_delete_test) {
+	ipcs_t ipcs;
+	ivector_t pos;
+
+	ipcs.i_gpid = 1;
+	ipcs.i_key = key_get(FTOK_FILE_PATH);
+	ipc_init_new(&ipcs);
+
+	player_move_to(&ipcs, &pos, (ivector_t) {14, 12});
+	ipcs.i_gpid = 2;
+	// player_move_to(&ipcs, &pos, (ivector_t) {13, 12});
+	player_move_to(&ipcs, &pos, (ivector_t) {13, 11});
+	pos.v_x = 14;
+	pos.v_y = 12;
+	ipcs.i_gpid = 1;
+	cr_assert_eq(player_is_killed(&ipcs, pos), false);
+}
+

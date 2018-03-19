@@ -115,5 +115,6 @@ bool	player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading);
 void	player_wait_startup(ipcs_t *ipcs);
 ivector_t player_find_startpoint(ipcs_t *ipcs);
 void	player_loop(ipcs_t *ipcs, ivector_t pos);
+bool	player_is_killed(ipcs_t *ipcs, ivector_t pos);
 
 #endif /* !LEMIPC_H_ */

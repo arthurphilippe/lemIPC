@@ -38,6 +38,7 @@ SRCS		=	src/shm/shm_get.c			\
 			src/player/player_move.c		\
 			src/player/player_wait.c		\
 			src/player/player_find_startpoint.c	\
+			src/player/player_is_killed.c		\
 			src/host/host_loop.c			\
 			src/host/host_wait.c			\
 			src/host/host_terminate.c		\

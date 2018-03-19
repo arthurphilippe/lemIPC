@@ -24,5 +24,7 @@ int shm_pos_gpid_get(ipcs_t *ipcs, ivector_t pos)
 {
 	size_t idx = pos.v_y * (BOARD_SIZE / BOARD_SIDE) + pos.v_x;
 
-	return (ipcs->i_shmsg[idx] - '0');
+	if (ipcs->i_shmsg[idx] != POS_EMPTY)
+		return (ipcs->i_shmsg[idx] - '0');
+	return (0);
 }

@@ -20,5 +20,5 @@ void player_loop(ipcs_t *ipcs, ivector_t pos)
 		errno = 0;
 		msg = msg_collect_repeat(ipcs->i_msq, MSG_CH_BRD, IPC_NOWAIT);
 		usleep(100);
-	} while (msg.p_a != MSG_END);
+	} while (msg.p_a != MSG_END || player_is_killed(ipcs, pos));
 }
