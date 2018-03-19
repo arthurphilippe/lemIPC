@@ -25,7 +25,6 @@ size_t host_wait_startup(ipcs_t *ipcs)
 		}
 		total_players += 1;
 	}
-	// while (shm_teams_count(ipcs->i_shmsg) <= 1);
 	msg_send(ipcs->i_msq, MSG_CH_BRD, (payld_t) {MSG_CYCLE, 42, 0});
 	printf("[host] %ld players connected. Ready.\n", total_players);
 	return (total_players);

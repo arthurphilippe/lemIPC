@@ -116,7 +116,6 @@ Test(player, kill2fail, .init = ipc_delete_test, .fini = ipc_delete_test) {
 
 Test(player, wait) {
 	ipcs_t ipcs;
-	ivector_t pos;
 
 	ipcs.i_gpid = 1;
 	ipcs.i_key = key_get(FTOK_FILE_PATH);

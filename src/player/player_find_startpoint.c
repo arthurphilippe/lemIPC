@@ -8,7 +8,6 @@
 #include <time.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include "lemipc.h"
 
 static int get_rand(int modulo)
@@ -52,6 +51,5 @@ ivector_t player_find_startpoint(ipcs_t *ipcs)
 	do {
 		randomise_placement(&pos);
 	} while (!player_move_to(ipcs, &pos, pos));
-	printf("[player] placed at %d, %d\n", pos.v_x, pos.v_y);
 	return (pos);
 }

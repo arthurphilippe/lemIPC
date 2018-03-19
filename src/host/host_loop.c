@@ -12,7 +12,6 @@
 void host_loop(ipcs_t *ipcs)
 {
 	size_t team_count;
-	size_t debug_loops = 0;
 
 	usleep(SLEEP_TIME);
 	do {

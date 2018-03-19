@@ -9,6 +9,10 @@
 #include <stdlib.h>
 #include "lemipc.h"
 
+/*
+** Checks if the map has been static for STALLED_CYCLES_MAX amount
+** of cycles.
+*/
 bool shm_is_stalled(ipcs_t *ipcs)
 {
 	static char *buff = NULL;
