@@ -25,12 +25,12 @@ static void chose_side(int *vector)
 	}
 }
 
-static void change_vector(ivector_t *pos)
+static void randomise_placement(ivector_t *pos)
 {
 	static int i = 0;
 
 	if (i == 0) {
-		srandom(time(NULL) * getpid());		
+		srandom(time(NULL) * getpid());
 		i += 1;
 	}
 	if (get_rand(2) % 2 == 0) {
@@ -43,29 +43,15 @@ static void change_vector(ivector_t *pos)
 }
 
 /*
-**	1 is host
+** TODO: infinite-loop safety
 */
 ivector_t player_find_startpoint(ipcs_t *ipcs)
 {
 	ivector_t pos;
 
-	if (ipcs->i_gpid == 1) {
-		pos = (ivector_t) {get_rand(19), get_rand(19)};
-		while (!player_move_to(ipcs, &pos, pos)) {
-			pos.v_y += 1;
-		}
-	} else if (ipcs->i_gpid == 2) {
-		pos = (ivector_t) {get_rand(19), get_rand(19)};
-		while (!player_move_to(ipcs, &pos, pos)) {
-			pos.v_x += 1;
-		}
-	} else {
-		printf("stpt 3\n");
-		change_vector(&pos);
-		while (!player_move_to(ipcs, &pos, pos)) {
-			pos.v_x += 1;
-		}
-	}
+	do {
+		randomise_placement(&pos);
+	} while (!player_move_to(ipcs, &pos, pos));
 	printf("[player] placed at %d, %d\n", pos.v_x, pos.v_y);
 	return (pos);
 }
