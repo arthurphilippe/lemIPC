@@ -18,6 +18,7 @@ bool shm_is_stalled(ipcs_t *ipcs)
 		buff = calloc(sizeof(char), BOARD_SIZE);
 	if (!ipcs) {
 		free(buff);
+		buff = NULL;
 		return (false);
 	}
 	if (strcmp(ipcs->i_shmsg, buff) == 0)
