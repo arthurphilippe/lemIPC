@@ -81,6 +81,7 @@ tests_run: CC=gcc --coverage
 tests_run: tests
 	@./$(TEST) --jobs 1 || true
 	@cd tests/ && find -name "*.gcda" -delete -o -name "*.gcno" -delete
+	@cd src/ && rm -f main.gcda main.gcno
 #	 @bash ./tests/functional_tests.sh
 
 $(NAME): $(OBJ_MAIN) $(OBJS)
