@@ -16,6 +16,10 @@ bool shm_is_stalled(ipcs_t *ipcs)
 
 	if (buff == NULL)
 		buff = calloc(sizeof(char), BOARD_SIZE);
+	if (!ipcs) {
+		free(buff);
+		return (false);
+	}
 	if (strcmp(ipcs->i_shmsg, buff) == 0)
 		stalled_cycles_count += 1;
 	else

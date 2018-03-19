@@ -114,3 +114,15 @@ Test(player, kill2fail, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	cr_assert_eq(player_is_killed(&ipcs, pos), false);
 }
 
+Test(player, wait) {
+	ipcs_t ipcs;
+	ivector_t pos;
+
+	ipcs.i_gpid = 1;
+	ipcs.i_key = key_get(FTOK_FILE_PATH);
+	ipc_init_new(&ipcs);
+
+	msg_send(ipcs.i_msq, MSG_CH_BRD, (payld_t) {MSG_CYCLE, 0, 0});
+	player_wait_startup(&ipcs);
+	cr_assert(true);
+}

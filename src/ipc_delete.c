@@ -16,6 +16,7 @@ void ipc_delete(const char *path)
 		sem_delete(key);
 		shm_delete(key);
 		msq_delete(key);
+		shm_is_stalled(NULL);
 	}
 }
 
@@ -27,6 +28,7 @@ void ipc_delete_test(void)
 		sem_delete(key);
 		shm_delete(key);
 		msq_delete(key);
+		shm_is_stalled(NULL);
 	}
 }
 

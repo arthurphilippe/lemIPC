@@ -77,3 +77,24 @@ Test(shm, teams_count) {
 	shmsg[328] = 11 + '0';
 	cr_assert_eq(shm_teams_count(shmsg), (size_t) 10);
 }
+
+Test(shm, is_stalled) {
+	ipcs_t ipcs;
+
+	ipcs.i_shmsg = malloc(400);
+	if (!ipcs.i_shmsg)
+		cr_assert_fail("malloc error");
+	memset(ipcs.i_shmsg, '.', 400);
+
+	for (uint i = 0; i <= STALLED_CYCLES_MAX; i += 1) {
+		shm_is_stalled(&ipcs);
+	}
+	cr_assert(shm_is_stalled(&ipcs));
+	ipcs.i_shmsg[42] = '1';
+	cr_assert_not(shm_is_stalled(&ipcs));
+	for (uint i = 0; i <= STALLED_CYCLES_MAX; i += 1) {
+		shm_is_stalled(&ipcs);
+	}
+	cr_assert(shm_is_stalled(&ipcs));
+
+}
