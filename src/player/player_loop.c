@@ -5,6 +5,7 @@
 ** player_loop
 */
 
+#include <unistd.h>
 #include <stdio.h>
 #include <errno.h>
 #include "lemipc.h"
@@ -19,7 +20,8 @@ void player_loop(ipcs_t *ipcs, ivector_t pos)
 		sem_value_unlock(ipcs->i_sem_set);
 		errno = 0;
 		msg = msg_collect_repeat(ipcs->i_msq, MSG_CH_BRD, IPC_NOWAIT);
-		usleep(100);
-	} while (msg.p_a != MSG_END || player_is_killed(ipcs, pos));
+		usleep(SLEEP_TIME);
+	} while (msg.p_a != MSG_END || player_is_killed(ipcs, pos)
+			|| errno != ENOMSG);
 	shm_put(ipcs, pos, POS_EMPTY);
 }

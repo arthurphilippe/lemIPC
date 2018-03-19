@@ -11,7 +11,7 @@
 
 int lem_host(ipcs_t *ipcs)
 {
-	usleep(100);
+	usleep(SLEEP_TIME);
 	dprintf(1, "[host] starting...\n");
 	host_wait_startup(ipcs);
 	dprintf(1, "[host] started\n");

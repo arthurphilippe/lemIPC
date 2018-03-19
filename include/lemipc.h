@@ -38,6 +38,8 @@
 #define EXT_FAILURE 84
 #define EXT_SUCCESS 0
 #define SEM_NB 1
+#define SLEEP_TIME 1000000
+#define STALLED_CYCLES_MAX 10
 
 extern char *g_key_path;
 
@@ -78,6 +80,7 @@ bool	shm_put_try(ipcs_t *ipcs, ivector_t where, char what);
 bool	shm_pos_is_free(ipcs_t *ipcs, ivector_t pos);
 int	shm_pos_gpid_get(ipcs_t *ipcs, ivector_t pos);
 size_t	shm_teams_count(char *shmsg);
+bool	shm_is_stalled(ipcs_t *ipcs);
 
 int	sem_suite_get(key_t key);
 
