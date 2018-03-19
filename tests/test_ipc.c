@@ -30,7 +30,6 @@ Test(ipc, init_existing, .init = ipc_delete_test, .fini = ipc_delete_test) {
 
 	ipcs.i_gpid = 1;
 	ipcs.i_key = key_get(FTOK_FILE_PATH);
-
 	ipc_init_new(&ipcs);
 	cr_assert_neq(ipcs.i_key, -1);
 	cr_assert_neq(ipcs.i_msq, -1);
@@ -40,6 +39,8 @@ Test(ipc, init_existing, .init = ipc_delete_test, .fini = ipc_delete_test) {
 	player_find_startpoint(&ipcs);
 	sem_value_unlock(ipcs.i_sem_set);
 	memset(&ipcs, 0, sizeof(ipcs_t));
+	ipcs.i_gpid = 1;
+	ipcs.i_key = key_get(FTOK_FILE_PATH);
 	ipc_init_existing(&ipcs);
 	cr_assert_neq(ipcs.i_key, -1);
 	cr_assert_neq(ipcs.i_msq, -1);

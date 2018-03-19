@@ -5,6 +5,7 @@
 ** ipc_init
 */
 
+#include <stdio.h>
 #include <signal.h>
 #include "lemipc.h"
 
