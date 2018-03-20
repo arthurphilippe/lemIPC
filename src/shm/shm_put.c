@@ -9,7 +9,7 @@
 
 void shm_put(ipcs_t *ipcs, ivector_t where, char what)
 {
-	size_t pos = where.v_y * (BOARD_SIZE / BOARD_SIDE) + where.v_x;
+	size_t pos = where.v_x * (BOARD_SIZE / BOARD_SIDE) + where.v_y;
 
 	ipcs->i_shmsg[pos] = what;
 }

@@ -162,6 +162,5 @@ Test(shm, barycentre_find_target) {
 	res = shm_barycentre_find_target(&ipcs, 9);
 	cr_assert(res.v_x == 6);
 	cr_assert(res.v_y == 5);
-
 }
 

@@ -10,6 +10,18 @@
 #include <errno.h>
 #include "lemipc.h"
 
+void (*const IA_FNCTS[]) (ipcs_t *, ivector_t *) = {
+	player_ia_1_run,
+	player_ia_2_run,
+	NULL,
+};
+
+static void player_strategy_select(ipcs_t *ipcs, ivector_t *pos)
+{
+	dprintf(1, "trying with %d\n", (ipcs->i_gpid - 1) % (IMPLEMENTED_STATEGIES));
+	IA_FNCTS[(ipcs->i_gpid - 1) % (IMPLEMENTED_STATEGIES)](ipcs, pos);
+}
+
 void player_loop(ipcs_t *ipcs, ivector_t pos)
 {
 	payld_t msg;
@@ -19,7 +31,8 @@ void player_loop(ipcs_t *ipcs, ivector_t pos)
 		sem_value_lock(ipcs->i_sem_set);
 		if (errno != 0 && errno != ENOMSG)
 			break;
-		player_move_towards(ipcs, &pos, (ivector_t) {10, 10});
+		player_strategy_select(ipcs, &pos);
+		// player_move_towards(ipcs, &pos, (ivector_t) {10, 10});
 		sem_value_unlock(ipcs->i_sem_set);
 		errno = 0;
 		msg = msg_collect_repeat(ipcs->i_msq, MSG_CH_BRD, IPC_NOWAIT);
