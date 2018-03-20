@@ -96,5 +96,30 @@ Test(shm, is_stalled) {
 		shm_is_stalled(&ipcs);
 	}
 	cr_assert(shm_is_stalled(&ipcs));
+}
 
+Test(shm, barycentre_find) {
+	ipcs_t ipcs;
+	ivector_t res;
+
+	ipcs.i_shmsg = malloc(400);
+	if (!ipcs.i_shmsg)
+		cr_assert_fail("malloc error");
+	memset(ipcs.i_shmsg, '.', 400);
+
+	res = shm_barycentre_find(&ipcs);
+	cr_assert(res.v_x == 0);
+	cr_assert(res.v_y == 0);
+	ipcs.i_shmsg[42] = '1';
+	res = shm_barycentre_find(&ipcs);
+	cr_assert(res.v_x == 2);
+	cr_assert(res.v_y == 2);
+	ipcs.i_shmsg[245] = '7';
+	res = shm_barycentre_find(&ipcs);
+	cr_assert(res.v_x == 7);
+	cr_assert(res.v_y == 3);
+	ipcs.i_shmsg[88] = '5';
+	res = shm_barycentre_find(&ipcs);
+	cr_assert(res.v_x == 6);
+	cr_assert(res.v_y == 5);
 }

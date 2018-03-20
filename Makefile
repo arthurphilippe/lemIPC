@@ -20,6 +20,7 @@ SRCS		=	src/shm/shm_get.c			\
 			src/shm/shm_print.c			\
 			src/shm/shm_teams_count.c		\
 			src/shm/shm_is_stalled.c		\
+			src/shm/shm_barycentre_find.c		\
 			src/key_get.c				\
 			src/sem/sem_suite_get.c			\
 			src/sem/sem_value_alter.c		\
