@@ -5,7 +5,7 @@
 ** ipc_init
 */
 
-#include <stdio.h>
+#include <string.h>
 #include <signal.h>
 #include "lemipc.h"
 
@@ -13,6 +13,7 @@ int ipc_init_new(ipcs_t *ipcs)
 {
 	struct sigaction sa;
 
+	memset(&sa, 0, sizeof(struct sigaction));
 	sa.sa_handler = ipc_delete_sigint;
 	sa.sa_flags = SA_RESTART;
 	if (sigaction(SIGINT, &sa, NULL) == -1)

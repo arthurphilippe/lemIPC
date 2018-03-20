@@ -25,7 +25,7 @@ bool shm_is_stalled(ipcs_t *ipcs)
 		buff = NULL;
 		return (false);
 	}
-	if (strcmp(ipcs->i_shmsg, buff) == 0)
+	if (strncmp(ipcs->i_shmsg, buff, BOARD_SIZE) == 0)
 		stalled_cycles_count += 1;
 	else
 		stalled_cycles_count = 0;
