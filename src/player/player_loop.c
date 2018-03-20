@@ -11,8 +11,8 @@
 #include "lemipc.h"
 
 void (*const IA_FNCTS[]) (ipcs_t *, ivector_t *) = {
-	player_ia_1_run,
-	player_ia_2_run,
+	player_strategy_1_run,
+	player_strategy_2_run,
 	NULL,
 };
 
