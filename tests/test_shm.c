@@ -103,6 +103,7 @@ Test(shm, barycentre_find) {
 	ivector_t res;
 
 	ipcs.i_shmsg = malloc(BOARD_SIZE);
+	ipcs.i_gpid = 4;
 	if (!ipcs.i_shmsg)
 		cr_assert_fail("malloc error");
 	memset(ipcs.i_shmsg, '.', BOARD_SIZE);
@@ -122,4 +123,45 @@ Test(shm, barycentre_find) {
 	res = shm_barycentre_find(&ipcs);
 	cr_assert(res.v_x == 6);
 	cr_assert(res.v_y == 5);
+	ipcs.i_shmsg[288] = '4';
+	res = shm_barycentre_find(&ipcs);
+	cr_assert(res.v_x == 6);
+	cr_assert(res.v_y == 5);
 }
+
+Test(shm, barycentre_find_target) {
+	ipcs_t ipcs;
+	ivector_t res;
+
+	ipcs.i_shmsg = malloc(BOARD_SIZE);
+	ipcs.i_gpid = 4;
+	if (!ipcs.i_shmsg)
+		cr_assert_fail("malloc error");
+	memset(ipcs.i_shmsg, '.', BOARD_SIZE);
+
+	res = shm_barycentre_find_target(&ipcs, 9);
+	cr_assert(res.v_x == 0);
+	cr_assert(res.v_y == 0);
+	ipcs.i_shmsg[42] = '9';
+	res = shm_barycentre_find_target(&ipcs, 9);
+	cr_assert(res.v_x == 2);
+	cr_assert(res.v_y == 2);
+	ipcs.i_shmsg[345] = '8';
+	res = shm_barycentre_find_target(&ipcs, 9);
+	cr_assert(res.v_x == 2);
+	cr_assert(res.v_y == 2);
+	ipcs.i_shmsg[245] = '9';
+	res = shm_barycentre_find_target(&ipcs, 9);
+	cr_assert(res.v_x == 7);
+	cr_assert(res.v_y == 3);
+	ipcs.i_shmsg[88] = '9';
+	res = shm_barycentre_find_target(&ipcs, 9);
+	cr_assert(res.v_x == 6);
+	cr_assert(res.v_y == 5);
+	ipcs.i_shmsg[288] = '3';
+	res = shm_barycentre_find_target(&ipcs, 9);
+	cr_assert(res.v_x == 6);
+	cr_assert(res.v_y == 5);
+
+}
+

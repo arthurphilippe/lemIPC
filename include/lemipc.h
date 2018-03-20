@@ -82,6 +82,7 @@ int	shm_pos_gpid_get(ipcs_t *ipcs, ivector_t pos);
 size_t	shm_teams_count(char *shmsg);
 bool	shm_is_stalled(ipcs_t *ipcs);
 ivector_t shm_barycentre_find(ipcs_t *ipcs);
+ivector_t shm_barycentre_find_target(ipcs_t *ipcs, int target);
 
 int	sem_suite_get(key_t key);
 
