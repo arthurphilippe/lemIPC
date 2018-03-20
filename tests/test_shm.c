@@ -51,11 +51,11 @@ Test(shm, failingUnexisting, .init = ipc_delete_test, .fini = ipc_delete_test) {
 }
 
 Test(shm, teams_count) {
-	char *shmsg = malloc(400);
+	char *shmsg = malloc(BOARD_SIZE);
 
 	if (!shmsg)
 		cr_assert_fail("malloc error");
-	memset(shmsg, '.', 400);
+	memset(shmsg, '.', BOARD_SIZE);
 	cr_assert_eq(shm_teams_count(shmsg), (size_t) 0);
 	shmsg[23] = '1';
 	cr_assert_eq(shm_teams_count(shmsg), (size_t) 1);
@@ -81,10 +81,10 @@ Test(shm, teams_count) {
 Test(shm, is_stalled) {
 	ipcs_t ipcs;
 
-	ipcs.i_shmsg = malloc(400);
+	ipcs.i_shmsg = malloc(BOARD_SIZE);
 	if (!ipcs.i_shmsg)
 		cr_assert_fail("malloc error");
-	memset(ipcs.i_shmsg, '.', 400);
+	memset(ipcs.i_shmsg, '.', BOARD_SIZE);
 
 	for (uint i = 0; i <= STALLED_CYCLES_MAX; i += 1) {
 		shm_is_stalled(&ipcs);
@@ -102,10 +102,10 @@ Test(shm, barycentre_find) {
 	ipcs_t ipcs;
 	ivector_t res;
 
-	ipcs.i_shmsg = malloc(400);
+	ipcs.i_shmsg = malloc(BOARD_SIZE);
 	if (!ipcs.i_shmsg)
 		cr_assert_fail("malloc error");
-	memset(ipcs.i_shmsg, '.', 400);
+	memset(ipcs.i_shmsg, '.', BOARD_SIZE);
 
 	res = shm_barycentre_find(&ipcs);
 	cr_assert(res.v_x == 0);
