@@ -13,7 +13,6 @@
 int main(int ac, char **av)
 {
 	if (ac == 3) {
-		dprintf(1, "hi\n");
 		lem_start(av[1], atoi(av[2]));
 		return (EXT_SUCCESS);
 	}
