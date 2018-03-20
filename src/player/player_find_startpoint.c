@@ -17,11 +17,7 @@ static int get_rand(int modulo)
 
 static void chose_side(int *vector)
 {
-	if (get_rand(2) % 2 == 0) {
-		*vector = 1;
-	} else {
-		*vector = 18;
-	}
+	*vector = (get_rand(2)) ? BOARD_SIDE - 2 : 1;
 }
 
 static void randomise_placement(ivector_t *pos)
@@ -34,10 +30,10 @@ static void randomise_placement(ivector_t *pos)
 	}
 	if (get_rand(2) % 2 == 0) {
 		chose_side(&pos->v_y);
-		pos->v_x = get_rand(19);
+		pos->v_x = get_rand(BOARD_SIDE - 1);
 	} else {
 		chose_side(&pos->v_x);
-		pos->v_y = get_rand(19);
+		pos->v_y = get_rand(BOARD_SIDE - 1);
 	}
 }
 
