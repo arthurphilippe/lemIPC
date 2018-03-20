@@ -164,3 +164,28 @@ Test(shm, barycentre_find_target) {
 	cr_assert(res.v_y == 5);
 }
 
+Test(shm, foe_find) {
+	ipcs_t ipcs;
+	ivector_t res;
+
+	ipcs.i_shmsg = malloc(BOARD_SIZE);
+	ipcs.i_gpid = 4;
+	if (!ipcs.i_shmsg)
+		cr_assert_fail("malloc error");
+	memset(ipcs.i_shmsg, '.', BOARD_SIZE);
+
+	shm_put(&ipcs, (ivector_t) {5, 3}, '4');
+	shm_put(&ipcs, (ivector_t) {14, 13}, '5');
+	res = shm_foe_find(&ipcs, (ivector_t) {5, 3});
+	cr_assert(res.v_x == 14);
+	cr_assert(res.v_y == 13);
+	shm_put(&ipcs, (ivector_t) {4, 3}, '3');
+	res = shm_foe_find(&ipcs, (ivector_t) {5, 3});
+	cr_assert(res.v_x == 4);
+	cr_assert(res.v_y == 3);
+
+	shm_put(&ipcs, (ivector_t) {12, 13}, '4');
+	res = shm_foe_find(&ipcs, (ivector_t) {12, 13});
+	cr_assert(res.v_x == 14);
+	cr_assert(res.v_y == 13);
+}

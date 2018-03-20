@@ -84,6 +84,7 @@ size_t	shm_teams_count(char *shmsg);
 bool	shm_is_stalled(ipcs_t *ipcs);
 ivector_t shm_barycentre_find(ipcs_t *ipcs);
 ivector_t shm_barycentre_find_target(ipcs_t *ipcs, int target);
+ivector_t shm_foe_find(ipcs_t *ipcs, ivector_t player_pos);
 
 int	sem_suite_get(key_t key);
 
@@ -124,7 +125,7 @@ void	player_loop(ipcs_t *ipcs, ivector_t pos);
 bool	player_is_killed(ipcs_t *ipcs, ivector_t pos);
 bool	player_move_fromwards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
 
-void player_ia_1_run(ipcs_t *ipcs, ivector_t *pos);
-void player_ia_2_run(ipcs_t *ipcs, ivector_t *pos);
+void	player_ia_1_run(ipcs_t *ipcs, ivector_t *pos);
+void	player_ia_2_run(ipcs_t *ipcs, ivector_t *pos);
 
 #endif /* !LEMIPC_H_ */

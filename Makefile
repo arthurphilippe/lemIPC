@@ -21,6 +21,7 @@ SRCS		=	src/shm/shm_get.c			\
 			src/shm/shm_teams_count.c		\
 			src/shm/shm_is_stalled.c		\
 			src/shm/shm_barycentre_find.c		\
+			src/shm/shm_foe_find.c			\
 			src/key_get.c				\
 			src/sem/sem_suite_get.c			\
 			src/sem/sem_value_alter.c		\
@@ -65,7 +66,7 @@ OBJS_TEST	=	$(SRCS_TEST:.c=.o)
 
 CFLAGS		=	-W -Wextra -Wall -Iinclude/
 
-LDFLAGS		=	-L./ -lpthread
+LDFLAGS		=	-L./ -lpthread -lm
 
 %.o: %.c
 	@printf "[\033[0;36mcompiling\033[0m]% 39s\r" $< | tr " " "."

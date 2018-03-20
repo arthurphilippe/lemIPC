@@ -19,8 +19,8 @@ ivector_t shm_barycentre_find_target(ipcs_t *ipcs, int target)
 	for (uint i = 0; i < BOARD_SIZE; i += 1) {
 		if (ipcs->i_shmsg[i] != POS_EMPTY
 			&& ipcs->i_shmsg[i] == target + '0') {
-			sum.v_x += (i + 1) / BOARD_SIDE;
-			sum.v_y += (i + 1) % BOARD_SIDE;
+			sum.v_x += i / BOARD_SIDE;
+			sum.v_y += i % BOARD_SIDE;
 			count += 1;
 		}
 	}
@@ -43,8 +43,8 @@ ivector_t shm_barycentre_find(ipcs_t *ipcs)
 	for (uint i = 0; i < BOARD_SIZE; i += 1) {
 		if (ipcs->i_shmsg[i] != POS_EMPTY
 			&& ipcs->i_shmsg[i] != ipcs->i_gpid + '0') {
-			sum.v_x += (i + 1) / BOARD_SIDE;
-			sum.v_y += (i + 1) % BOARD_SIDE;
+			sum.v_x += i / BOARD_SIDE;
+			sum.v_y += i % BOARD_SIDE;
 			count += 1;
 		}
 	}
