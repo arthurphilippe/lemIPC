@@ -44,6 +44,7 @@ SRCS		=	src/shm/shm_get.c			\
 			src/player/player_is_killed.c		\
 			src/player/player_strategy_1.c		\
 			src/player/player_strategy_2.c		\
+			src/player/player_strategy_3.c		\
 			src/host/host_loop.c			\
 			src/host/host_wait.c			\
 			src/host/host_terminate.c		\

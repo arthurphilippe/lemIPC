@@ -40,7 +40,7 @@
 #define SEM_NB 1
 #define SLEEP_TIME 1000000
 #define STALLED_CYCLES_MAX 10
-#define IMPLEMENTED_STATEGIES 2
+#define IMPLEMENTED_STATEGIES 3
 
 extern char *g_key_path;
 
@@ -127,5 +127,6 @@ bool	player_move_fromwards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
 
 void	player_strategy_1_run(ipcs_t *ipcs, ivector_t *pos);
 void	player_strategy_2_run(ipcs_t *ipcs, ivector_t *pos);
+void	player_strategy_3_run(ipcs_t *ipcs, ivector_t *pos);
 
 #endif /* !LEMIPC_H_ */

@@ -13,12 +13,12 @@
 void (*const IA_FNCTS[]) (ipcs_t *, ivector_t *) = {
 	player_strategy_1_run,
 	player_strategy_2_run,
+	player_strategy_3_run,
 	NULL,
 };
 
 static void player_strategy_select(ipcs_t *ipcs, ivector_t *pos)
 {
-	dprintf(1, "trying with %d\n", (ipcs->i_gpid - 1) % (IMPLEMENTED_STATEGIES));
 	IA_FNCTS[(ipcs->i_gpid - 1) % (IMPLEMENTED_STATEGIES)](ipcs, pos);
 }
 
