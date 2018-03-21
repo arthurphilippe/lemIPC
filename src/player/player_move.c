@@ -8,19 +8,8 @@
 #include <stdio.h>
 #include "lemipc.h"
 
-/*
-** Tries to move a player closer to the position given as aim.
-*/
-bool player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim)
+static bool player_unblock(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos)
 {
-	ivector_t new_pos = {0, 0};
-
-	if (curr->v_x != aim.v_x)
-		new_pos.v_x = ((curr->v_x < aim.v_x) ? 1 : -1);
-	if (curr->v_y != aim.v_y)
-		new_pos.v_y = ((curr->v_y < aim.v_y) ? 1 : -1);
-	if (player_move_by(ipcs, curr, new_pos))
-		return (true);
 	if (new_pos.v_x == 0 && new_pos.v_y != 0) {
 		new_pos.v_x = -1;
 		if (player_move_by(ipcs, curr, new_pos))
@@ -40,6 +29,22 @@ bool player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim)
 		return (false);
 	}
 	return (false);
+}
+
+/*
+** Tries to move a player closer to the position given as aim.
+*/
+bool player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim)
+{
+	ivector_t new_pos = {0, 0};
+
+	if (curr->v_x != aim.v_x)
+		new_pos.v_x = ((curr->v_x < aim.v_x) ? 1 : -1);
+	if (curr->v_y != aim.v_y)
+		new_pos.v_y = ((curr->v_y < aim.v_y) ? 1 : -1);
+	if (player_move_by(ipcs, curr, new_pos))
+		return (true);
+	return (player_unblock(ipcs, curr, new_pos));
 }
 
 /*
