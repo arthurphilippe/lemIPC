@@ -72,7 +72,6 @@ bool player_move_fromwards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim)
 bool player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos)
 {
 	if (shm_put_try(ipcs, new_pos, (char) ipcs->i_gpid + '0')) {
-		// shm_put(ipcs, *curr, POS_EMPTY);
 		*curr = new_pos;
 		return (true);
 	}
