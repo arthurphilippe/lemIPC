@@ -129,4 +129,8 @@ void	player_strategy_1_run(ipcs_t *ipcs, ivector_t *pos);
 void	player_strategy_2_run(ipcs_t *ipcs, ivector_t *pos);
 void	player_strategy_3_run(ipcs_t *ipcs, ivector_t *pos);
 
+void	display_basic(ipcs_t *ipcs);
+void	display_ncurses(ipcs_t *ipcs);
+void	display_ncurses_init(void);
+void	display_select(ipcs_t *ipcs, bool mod);
 #endif /* !LEMIPC_H_ */

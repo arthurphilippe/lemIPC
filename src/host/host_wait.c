@@ -15,7 +15,6 @@ size_t host_wait_startup(ipcs_t *ipcs)
 	payld_t data;
 	size_t total_players = 0;
 
-	printf("[host] waiting for players...\n");
 	while (!is_game_ready) {
 		data = msg_collect(ipcs->i_msq, MSG_CH_HOST, 0);
 		if (first_gpid == -1) {
@@ -26,6 +25,5 @@ size_t host_wait_startup(ipcs_t *ipcs)
 		total_players += 1;
 	}
 	msg_send(ipcs->i_msq, MSG_CH_BRD, (payld_t) {MSG_CYCLE, 42, 0});
-	printf("[host] %ld players connected. Ready.\n", total_players);
 	return (total_players);
 }

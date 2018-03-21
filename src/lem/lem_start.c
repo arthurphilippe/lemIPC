@@ -22,7 +22,7 @@ int lem_start(const char *path, int team_nb)
 	ipcs.i_gpid = team_nb;
 	ipcs.i_key = key_get(path);
 	g_key_path = strdup(path);
-	if (ipcs.i_key == RET_OK || !g_key_path)
+	if (ipcs.i_key == RET_OK || !g_key_path || team_nb <= 0)
 		return (RET_ERR);
 	ipcs.i_shmsg = shm_get_existing(ipcs.i_key);
 	if (ipcs.i_shmsg == NULL) {

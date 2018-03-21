@@ -48,6 +48,9 @@ SRCS		=	src/shm/shm_get.c			\
 			src/host/host_loop.c			\
 			src/host/host_wait.c			\
 			src/host/host_terminate.c		\
+			src/display/display_basic.c		\
+			src/display/display_ncurses.c		\
+			src/display/display_select.c		\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
@@ -67,7 +70,7 @@ OBJS_TEST	=	$(SRCS_TEST:.c=.o)
 
 CFLAGS		=	-W -Wextra -Wall -Iinclude/
 
-LDFLAGS		=	-L./ -lpthread -lm
+LDFLAGS		=	-L./ -lpthread -lm -lncurses
 
 %.o: %.c
 	@printf "[\033[0;36mcompiling\033[0m]% 39s\r" $< | tr " " "."
