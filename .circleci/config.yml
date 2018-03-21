@@ -2,7 +2,7 @@ version: 2
 jobs:
   full_test:
     docker:
-      - image: arthurphilippe/epitech-c-cpp-plain
+      - image: epitechcontent/epitest-docker
     steps:
       - checkout
       - run:
@@ -27,7 +27,7 @@ jobs:
 
   build_clang:
     docker:
-      - image: arthurphilippe/clang
+      - image: epitechcontent/epitest-docker
     steps:
       - checkout
       - run:
