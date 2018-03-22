@@ -1,0 +1,6 @@
+USAGE
+	./lemipc PATH TEAM_NUMBER
+
+DESCRIPTION
+	PATH		path you'll give to ftok
+	TEAM_NUMBER	team number of the current champion (greater than 0)

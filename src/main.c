@@ -11,6 +11,24 @@
 #include <stdlib.h>
 #include "lemipc.h"
 
+static void print_usage()
+{
+	FILE *fd = fopen("helper.txt", "r");
+	int length;
+	char str[1024];
+
+	if ((fseek(fd, 0, SEEK_END)) == -1)
+		return;
+	if ((length = ftell(fd)) == -1)
+		return;;
+	if ((fseek(fd, 0, SEEK_SET)) == -1)
+		return;
+	memset(str, '\0', 1024);
+	fread(str, length, 1, fd);
+	fclose(fd);
+	printf("%s", str);
+}
+
 static void lem_opt_fix_buff(int *buff_time)
 {
 	if (*buff_time < 0)
@@ -50,6 +68,7 @@ int main(int ac, char **av)
 		ret = lem_start(av[1], atoi(av[2]), opt.buff_time);
 		if (opt.ncurses)
 			endwin();
-	}
+	} else
+		print_usage();
 	return (ret == RET_ERR ? EXT_FAILURE : EXT_SUCCESS);
 }
