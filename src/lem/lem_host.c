@@ -11,10 +11,11 @@
 
 int lem_host(ipcs_t *ipcs)
 {
-	usleep(SLEEP_TIME);
+	usleep(ipcs->i_buff_time);
+	msg_send(ipcs->i_msq, MSG_CH_BRD,
+			(payld_t) {MSG_BUFF, ipcs->i_buff_time, 0});
 	host_wait_startup(ipcs);
 	host_loop(ipcs);
 	msg_send(ipcs->i_msq, MSG_CH_BRD, (payld_t) {MSG_END, 0, 0});
-	usleep(1000000);
 	return (RET_OK);
 }

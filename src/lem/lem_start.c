@@ -15,12 +15,13 @@
 */
 char *g_key_path = NULL;
 
-int lem_start(const char *path, int team_nb)
+int lem_start(const char *path, int team_nb, int tempo)
 {
 	ipcs_t ipcs;
 
 	ipcs.i_gpid = team_nb;
 	ipcs.i_key = key_get(path);
+	ipcs.i_buff_time = tempo;
 	g_key_path = strdup(path);
 	if (ipcs.i_key == RET_OK || !g_key_path || team_nb <= 0)
 		return (RET_ERR);

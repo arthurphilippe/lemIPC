@@ -25,6 +25,7 @@
 #define MSG_PLAYER_RDY 0
 #define MSG_CYCLE 1
 #define MSG_END 2
+#define MSG_BUFF 3
 
 #define IPC_AFLAGS (SHM_R | SHM_W)
 #define IPC_CFLAGS (IPC_CREAT | SHM_R | SHM_W)
@@ -67,7 +68,13 @@ typedef struct	s_ipcs {
 	int	i_sem_set;
 	int	i_msq;
 	int	i_gpid;
+	int	i_buff_time;
 }		ipcs_t;
+
+typedef struct	s_lem_opt {
+	bool	ncurses;
+	int	buff_time;
+}		lem_opt_t;
 
 key_t	key_get(const char *path);
 void	*shm_get_new(key_t key);
@@ -108,7 +115,7 @@ payld_t	msg_collect(int msq_id, long channel, int flags);
 payld_t msg_collect_repeat(int msq_id, long channel, int flags);
 void	msg_send(int msq_id, long channel, payld_t payload);
 
-int	lem_start(const char *path, int team_nb);
+int	lem_start(const char *path, int team_nb, int tempo);
 int	lem_threads_bstrap(ipcs_t *ipcs);
 int	lem_host(ipcs_t *ipcs);
 int	lem_play(ipcs_t *ipcs);

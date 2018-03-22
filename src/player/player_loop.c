@@ -36,7 +36,7 @@ void player_loop(ipcs_t *ipcs, ivector_t pos)
 		sem_value_unlock(ipcs->i_sem_set);
 		errno = 0;
 		msg = msg_collect_repeat(ipcs->i_msq, MSG_CH_BRD, IPC_NOWAIT);
-		usleep(SLEEP_TIME);
+		usleep(ipcs->i_buff_time);
 	} while (msg.p_a != MSG_END && player_is_killed(ipcs, pos) == false
 			&& (errno == 0 || errno == ENOMSG));
 	shm_put(ipcs, pos, POS_EMPTY);

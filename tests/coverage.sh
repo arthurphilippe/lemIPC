@@ -4,7 +4,7 @@ set -e
 
 echo ":: Rebuilding with coverage flags..."
 make fclean
-make tests_run -j 4
+make tests_run
 echo " --> Test and build complete!"
 
 

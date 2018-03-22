@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 ##
 ## EPITECH PROJECT, 2018
@@ -9,9 +9,7 @@
 
 IPCS_START_COUNT=$(ipcs | wc -l)
 
-./lemipc .gitignore 1 &
-./lemipc .gitignore 1 &
-./lemipc .gitignore 1 &
+./lemipc .gitignore 1 0 &
 ./lemipc .gitignore 1 &
 ./lemipc .gitignore 1 &
 ./lemipc .gitignore 1 &

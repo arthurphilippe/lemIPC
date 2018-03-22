@@ -9,7 +9,12 @@
 
 void player_wait_startup(ipcs_t *ipcs)
 {
+	payld_t msg;
 	msg_send(ipcs->i_msq, MSG_CH_HOST,
 			(payld_t) {MSG_PLAYER_NEW, ipcs->i_gpid, 0});
-	msg_collect_repeat(ipcs->i_msq, MSG_CH_BRD, 0);
+	do {
+		msg = msg_collect_repeat(ipcs->i_msq, MSG_CH_BRD, 0);
+		if (msg.p_a == MSG_BUFF)
+			ipcs->i_buff_time = msg.p_b;
+	} while (msg.p_a != MSG_CYCLE);
 }

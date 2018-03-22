@@ -44,6 +44,8 @@ bool player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim)
 		new_pos.v_y = ((curr->v_y < aim.v_y) ? 1 : -1);
 	if (player_move_by(ipcs, curr, new_pos))
 		return (true);
+	if (!ipcs->i_gpid || (ipcs->i_gpid % 3) != 0)
+		return (false);
 	return (player_unblock(ipcs, curr, new_pos));
 }
 

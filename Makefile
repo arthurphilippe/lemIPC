@@ -88,9 +88,9 @@ tests: $(TEST) $(NAME)
 tests_run: CC=gcc --coverage
 tests_run: tests
 	@./$(TEST) --jobs 1 || true
+	@bash ./tests/stage_1.sh
 	@cd tests/ && find -name "*.gcda" -delete -o -name "*.gcno" -delete
 	@cd src/ && rm -f main.gcda main.gcno
-#	 @bash ./tests/functional_tests.sh
 
 $(NAME): $(OBJ_MAIN) $(OBJS)
 	@printf "[\033[0;36mlinking\033[0m]% 41s\r" $(NAME) | tr " " "."
