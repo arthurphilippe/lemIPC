@@ -30,7 +30,7 @@ static lem_opt_t lem_opt_get(int ac, char **av)
 			opt.ncurses = true;
 			display_select(NULL, true);
 		} else if (av[i][0] >= '0' && av[i][0] <= '9') {
- 			opt.buff_time = atoi(av[i]);
+			opt.buff_time = atoi(av[i]);
 		} else {
 			dprintf(2, "%s: unknown argument: %s\n", av[0], av[i]);
 		}
