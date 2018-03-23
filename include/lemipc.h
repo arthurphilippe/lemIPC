@@ -39,11 +39,12 @@
 #define EXT_FAILURE 84
 #define EXT_SUCCESS 0
 #define SEM_NB 1
-#define SLEEP_TIME 1000000
+#define SLEEP_TIME 500000
 #define STALLED_CYCLES_MAX 10
 #define IMPLEMENTED_STATEGIES 3
 
 extern char *g_key_path;
+extern int (*g_print_fcnt)(const char *format, ...);
 
 
 typedef struct	s_ivector {

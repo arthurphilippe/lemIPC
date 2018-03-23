@@ -8,31 +8,33 @@
 ##
 
 IPCS_START_COUNT=$(ipcs | wc -l)
+TEMPO=20
 
-./lemipc .gitignore 1 0 &
-./lemipc .gitignore 1 &
-./lemipc .gitignore 1 &
-./lemipc .gitignore 1 &
-./lemipc .gitignore 6 &
-./lemipc .gitignore 6 &
-./lemipc .gitignore 6 &
-./lemipc .gitignore 6 &
-./lemipc .gitignore 6 &
-./lemipc .gitignore 6 &
-./lemipc .gitignore 2 &
-./lemipc .gitignore 2 &
-./lemipc .gitignore 2 &
-./lemipc .gitignore 2 &
-./lemipc .gitignore 2 &
-./lemipc .gitignore 2 &
-./lemipc .gitignore 2 &
-./lemipc .gitignore 2 &
-./lemipc .gitignore 5 &
-./lemipc .gitignore 5 &
-./lemipc .gitignore 3 &
-./lemipc .gitignore 3 &
-./lemipc .gitignore 3 &
-./lemipc .gitignore 3 &
+./lemipc .gitignore 1 $TEMPO &
+sleep 1
+./lemipc .gitignore 1 "$TEMPO" &
+./lemipc .gitignore 1 "$TEMPO" &
+./lemipc .gitignore 1 "$TEMPO" &
+./lemipc .gitignore 6 "$TEMPO" &
+./lemipc .gitignore 6 "$TEMPO" &
+./lemipc .gitignore 6 "$TEMPO" &
+./lemipc .gitignore 6 "$TEMPO" &
+./lemipc .gitignore 6 "$TEMPO" &
+./lemipc .gitignore 6 "$TEMPO" &
+./lemipc .gitignore 2 "$TEMPO" &
+./lemipc .gitignore 2 "$TEMPO" &
+./lemipc .gitignore 2 "$TEMPO" &
+./lemipc .gitignore 2 "$TEMPO" &
+./lemipc .gitignore 2 "$TEMPO" &
+./lemipc .gitignore 2 "$TEMPO" &
+./lemipc .gitignore 2 "$TEMPO" &
+./lemipc .gitignore 2 "$TEMPO" &
+./lemipc .gitignore 5 "$TEMPO" &
+./lemipc .gitignore 5 "$TEMPO" &
+./lemipc .gitignore 3 "$TEMPO" &
+./lemipc .gitignore 3 "$TEMPO" &
+./lemipc .gitignore 3 "$TEMPO" &
+./lemipc .gitignore 3 "$TEMPO" &
 
 while [ "$IPCS_START_COUNT" -ne $(ipcs | wc -l) ]
 do

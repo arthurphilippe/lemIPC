@@ -15,6 +15,7 @@ size_t host_wait_startup(ipcs_t *ipcs)
 	payld_t data;
 	size_t total_players = 0;
 
+	shm_print(ipcs);
 	while (!is_game_ready) {
 		data = msg_collect(ipcs->i_msq, MSG_CH_HOST, 0);
 		if (first_gpid == -1) {
