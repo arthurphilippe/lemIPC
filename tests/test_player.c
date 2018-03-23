@@ -357,6 +357,7 @@ Test(player, wait) {
 	ipc_init_new(&ipcs);
 
 	msg_send(ipcs.i_msq, MSG_CH_BRD, (payld_t) {MSG_CYCLE, 0, 0});
+	msg_send(ipcs.i_msq, MSG_CH_BRD, (payld_t) {MSG_BUFF, 5000, 0});
 	player_wait_startup(&ipcs);
 	cr_assert(true);
 }
