@@ -42,6 +42,7 @@
 #define SLEEP_TIME 500000
 #define STALLED_CYCLES_MAX 10
 #define IMPLEMENTED_STATEGIES 3
+#define MAX_CYCLES 400
 
 extern char *g_key_path;
 extern int (*g_print_fcnt)(const char *format, ...);

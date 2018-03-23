@@ -340,7 +340,6 @@ Test(player, kill2fail, .init = ipc_delete_test, .fini = ipc_delete_test) {
 
 	player_move_to(&ipcs, &pos, (ivector_t) {14, 12});
 	ipcs.i_gpid = 2;
-	// player_move_to(&ipcs, &pos, (ivector_t) {13, 12});
 	player_move_to(&ipcs, &pos, (ivector_t) {13, 11});
 	pos.v_x = 14;
 	pos.v_y = 12;

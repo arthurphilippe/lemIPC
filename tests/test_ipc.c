@@ -67,7 +67,4 @@ Test(ipc, init_existing_fail, .init = ipc_delete_test,
 	ipcs.i_gpid = 1;
 	ipcs.i_key = key_get(FTOK_FILE_PATH);
 	cr_assert_eq(ipc_init_existing(&ipcs), 1);
-	// cr_assert_eq(ipcs.i_msq, -1);
-	// cr_assert_eq(ipcs.i_sem_set, -1);
-	// cr_assert_eq(ipcs.i_shmsg, NULL);
 }

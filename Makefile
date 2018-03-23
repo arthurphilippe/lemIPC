@@ -88,7 +88,9 @@ tests: $(TEST) $(NAME)
 tests_run: CC=gcc --coverage
 tests_run: tests
 	@./$(TEST) --jobs 1 || true
-	@bash ./tests/stage_1.sh
+	@bash ./tests/stage_1.sh | grep host
+	@bash ./tests/stage_1.sh | grep host
+	@bash ./tests/stage_1.sh | grep host
 	@cd tests/ && find -name "*.gcda" -delete -o -name "*.gcno" -delete
 	@cd src/ && rm -f main.gcda main.gcno
 
