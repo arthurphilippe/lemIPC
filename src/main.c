@@ -67,6 +67,8 @@ int main(int ac, char **av)
 		opt = lem_opt_get(ac, av);
 		ret = lem_start(av[1], atoi(av[2]), opt.buff_time);
 		if (opt.ncurses) {
+			printw("Press any key to quit...\n");
+			refresh();
 			timeout(5000);
 			getch();
 			endwin();
