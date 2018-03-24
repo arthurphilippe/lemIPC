@@ -12,5 +12,5 @@ void player_strategy_1_run(ipcs_t *ipcs, ivector_t *pos)
 {
 	ivector_t barycentre = shm_barycentre_find(ipcs);
 
-	player_move_towards(ipcs, pos, barycentre);
+	player_move_towards_dumb(ipcs, pos, barycentre);
 }

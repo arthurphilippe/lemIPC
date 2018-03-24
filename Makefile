@@ -39,6 +39,7 @@ SRCS		=	src/shm/shm_get.c			\
 			src/lem/lem_threads_bstrap.c		\
 			src/player/player_loop.c		\
 			src/player/player_move.c		\
+			src/player/player_move_to.c		\
 			src/player/player_wait.c		\
 			src/player/player_find_startpoint.c	\
 			src/player/player_is_killed.c		\
