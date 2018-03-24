@@ -24,7 +24,6 @@ void host_loop(ipcs_t *ipcs)
 {
 	size_t team_count;
 
-	ipcs->i_curr_cycle = 1;
 	usleep(ipcs->i_buff_time);
 	do {
 		sem_value_lock(ipcs->i_sem_set);
