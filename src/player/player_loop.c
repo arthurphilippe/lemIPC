@@ -27,6 +27,7 @@ void player_loop(ipcs_t *ipcs, ivector_t pos)
 	payld_t msg;
 	bool is_killed;
 
+	ipcs->i_curr_cycle = 1;
 	do {
 		errno = 0;
 		sem_value_lock(ipcs->i_sem_set);
@@ -38,6 +39,7 @@ void player_loop(ipcs_t *ipcs, ivector_t pos)
 		errno = 0;
 		msg = msg_collect_repeat(ipcs->i_msq, MSG_CH_BRD, IPC_NOWAIT);
 		usleep(ipcs->i_buff_time);
+		ipcs->i_curr_cycle += 1;
 	} while (msg.p_a != MSG_END && is_killed == false
 			&& (errno == 0 || errno == ENOMSG));
 	shm_put(ipcs, pos, POS_EMPTY);

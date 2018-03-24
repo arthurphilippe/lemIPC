@@ -11,7 +11,6 @@
 
 void display_basic(ipcs_t *ipcs)
 {
-	static uint cycles = 0;
 	size_t line = 0;
 	size_t line_idx;
 
@@ -22,10 +21,9 @@ void display_basic(ipcs_t *ipcs)
 		write(STDOUT_FILENO, "\n", 1);
 		line += 1;
 	}
-	if (!cycles) {
+	if (!ipcs->i_curr_cycle) {
 		dprintf(1, "[host] waiting for connections...\n");
 	}
 	else
-		dprintf(1, "\ncurrent cycle: %d.\n", cycles);
-	cycles += 1;
+		dprintf(1, "\ncurrent cycle: %d.\n", ipcs->i_curr_cycle);
 }

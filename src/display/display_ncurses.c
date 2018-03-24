@@ -11,7 +11,6 @@
 
 void display_ncurses(ipcs_t *ipcs)
 {
-	static uint cycles = 0;
 	size_t line = 0;
 	size_t line_idx;
 
@@ -22,12 +21,11 @@ void display_ncurses(ipcs_t *ipcs)
 		printw("%.20s\n", &ipcs->i_shmsg[line_idx], BOARD_SIDE);
 		line += 1;
 	}
-	if (!cycles) {
+	if (!ipcs->i_curr_cycle) {
 		printw("[host] waiting for connections...\n");
 	}
 	else
-		printw("\ncurrent cycle: %d.\n", cycles);
-	cycles += 1;
+		printw("\ncurrent cycle: %d.\n", ipcs->i_curr_cycle);
 	refresh();
 }
 

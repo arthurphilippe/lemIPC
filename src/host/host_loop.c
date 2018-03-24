@@ -23,8 +23,8 @@ static void display_winner(ipcs_t *ipcs)
 void host_loop(ipcs_t *ipcs)
 {
 	size_t team_count;
-	uint cycles = 0;
 
+	ipcs->i_curr_cycle = 1;
 	usleep(ipcs->i_buff_time);
 	do {
 		sem_value_lock(ipcs->i_sem_set);
@@ -34,9 +34,9 @@ void host_loop(ipcs_t *ipcs)
 			display_winner(ipcs);
 		sem_value_unlock(ipcs->i_sem_set);
 		usleep(ipcs->i_buff_time);
-		cycles += 1;
+		ipcs->i_curr_cycle += 1;
 	} while (team_count > 1 && !shm_is_stalled(ipcs)
-			&& cycles < MAX_CYCLES);
+			&& ipcs->i_curr_cycle < MAX_CYCLES);
 	if (shm_is_stalled(ipcs))
 		g_print_fcnt("[host] stoping: stalled for %d cycles\n",
 				STALLED_CYCLES_MAX);

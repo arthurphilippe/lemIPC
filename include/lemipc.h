@@ -47,7 +47,6 @@
 extern char *g_key_path;
 extern int (*g_print_fcnt)(const char *format, ...);
 
-
 typedef struct	s_ivector {
 	int	v_x;
 	int	v_y;
@@ -71,6 +70,7 @@ typedef struct	s_ipcs {
 	int	i_msq;
 	int	i_gpid;
 	int	i_buff_time;
+	uint	i_curr_cycle;
 }		ipcs_t;
 
 typedef struct	s_lem_opt {
