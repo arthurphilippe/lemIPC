@@ -22,7 +22,6 @@ static void player_strategy_select(ipcs_t *ipcs, ivector_t *pos)
 	int selected = (ipcs->i_gpid - 1) % (IMPLEMENTED_STATEGIES);
 
 	if (selected == 1 && ipcs->i_curr_cycle > (MAX_CYCLES / 4)) {
-		// dprintf(2, "hit\n");
 		IA_FNCTS[2](ipcs, pos);
 	}
 	else

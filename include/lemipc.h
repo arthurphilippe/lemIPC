@@ -126,7 +126,8 @@ size_t	host_wait_startup(ipcs_t *ipcs);
 void	host_loop(ipcs_t *ipcs);
 
 bool	player_move_towards(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
-bool	player_move_towards_dumb(ipcs_t *ipcs, ivector_t *curr, ivector_t aim);
+bool	player_move_towards_dumb(ipcs_t *ipcs, ivector_t *curr,
+					ivector_t aim);
 bool	player_move_to(ipcs_t *ipcs, ivector_t *curr, ivector_t new_pos);
 bool	player_move_by(ipcs_t *ipcs, ivector_t *curr, ivector_t heading);
 void	player_wait_startup(ipcs_t *ipcs);

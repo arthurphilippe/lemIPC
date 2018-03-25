@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include "lemipc.h"
 
-static void print_usage()
+static void print_usage(void)
 {
 	FILE *fd = fopen("helper.txt", "r");
 	int length;
@@ -19,8 +19,9 @@ static void print_usage()
 
 	if ((fseek(fd, 0, SEEK_END)) == RET_ERR)
 		return;
-	if ((length = ftell(fd)) == RET_ERR)
-		return;;
+	length = ftell(fd);
+	if (length == RET_ERR)
+		return;
 	if ((fseek(fd, 0, SEEK_SET)) == RET_ERR)
 		return;
 	memset(str, '\0', 1024);
