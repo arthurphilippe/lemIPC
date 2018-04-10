@@ -16,7 +16,7 @@ jobs:
           environment:
           command: ./unit_tests.out --xml=tests/results.xml --always-succeed --job 1
       - store_test_results:
-          path: tests
+          path: .
       - run:
           name: Code Coverage - Processing
           no_output_timeout: 50s
@@ -53,7 +53,7 @@ jobs:
             LD_LIBRARY_PATH: "/root/project"
           command: ./unit_tests.out --xml=tests/results.xml --always-succeed --job 1
       - store_test_results:
-          path: tests
+          path: .
 
 workflows:
   version: 2
