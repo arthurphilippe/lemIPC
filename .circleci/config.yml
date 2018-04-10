@@ -14,7 +14,9 @@ jobs:
       - run:
           name: Unit Tests Execution
           environment:
-          command: ./unit_tests.out --jobs 1
+          command: ./unit_tests.out --xml=tests/results.xml --always-succeed --job 1
+      - store_test_results:
+          path: tests
       - run:
           name: Code Coverage - Processing
           no_output_timeout: 50s
@@ -49,7 +51,9 @@ jobs:
           name: Unit Tests Execution
           environment:
             LD_LIBRARY_PATH: "/root/project"
-          command: ./unit_tests.out --jobs 1
+          command: ./unit_tests.out --xml=tests/results.xml --always-succeed --job 1
+          path: test-results
+              path: tests
 
 workflows:
   version: 2
