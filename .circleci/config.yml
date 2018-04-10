@@ -52,8 +52,8 @@ jobs:
           environment:
             LD_LIBRARY_PATH: "/root/project"
           command: ./unit_tests.out --xml=tests/results.xml --always-succeed --job 1
-          path: test-results
-              path: tests
+      - store_test_results:
+          path: tests
 
 workflows:
   version: 2
